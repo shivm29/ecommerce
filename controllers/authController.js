@@ -19,6 +19,7 @@ export const registerController = async (req, res) => {
         if (!phone) {
             return res.send({ error: 'Phone is required' });
         }
+
         if (!address) {
             return res.send({ error: 'Address is required' });
         }
