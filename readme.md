@@ -1,6 +1,6 @@
 <!-- npm init -y -->
 <!-- Installed express using --> npm i express
-<!-- created server.js upto block - a -->
+<!-- created server.js -->
 <!-- installed supervisor dotenv and morgan--> npm i supervisor dotenv morgan
 <!-- morgon : for logging HTTP requests and responses in Node. js applications. -->
 <!-- created a shared cluster named ecommerce on mongoDB -->
@@ -8,3 +8,4 @@
 
 <!-- installed mongoose : enables developers to define data models with fields, data types, validation rules, and default values, making it easier to ensure data consistency and integrity.
  --> npm i mongoose
+ <!-- bcrypt for encrypting passwords -->
