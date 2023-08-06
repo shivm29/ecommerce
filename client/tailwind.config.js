@@ -6,7 +6,11 @@ module.exports = {
     extend: {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
+        Nunito: ["Nunito", "sans-serif"],
       },
+      textUnderlineOffset: {
+        8: '5px',
+      }
     },
   },
   plugins: [],
