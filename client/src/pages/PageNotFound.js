@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import { NavLink } from 'react-router-dom'
 const PageNotFound = () => {
     return (
-        <Layout>
+        <Layout title={'Page not found - ShopCart'} >
             <div className=' flex justify-center items-center' style={{ minHeight: "70vh" }} >
                 <div className='flex justify-center items-center flex-col' >
                     <h1 className='text-9xl font-bold cursor-default mb-5' >404 :(</h1>

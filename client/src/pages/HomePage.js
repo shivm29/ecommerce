@@ -8,7 +8,7 @@ const HomePage = () => {
 
 
   return (
-    <Layout>
+    <Layout title={'Shop now - ShopCart | Home'} >
       <PickSomething />
 
     </Layout>
