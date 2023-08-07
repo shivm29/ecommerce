@@ -1,10 +1,16 @@
 import React from 'react'
 import Layout from '../components/Layout'
+import PickSomething from '../components/PickSomething'
+
+
 
 const HomePage = () => {
+
+
   return (
     <Layout>
-      <h3 className='text-center  ' >This is homepage</h3>
+      <PickSomething />
+
     </Layout>
   )
 }

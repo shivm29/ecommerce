@@ -1,7 +1,6 @@
 import React from 'react'
-import '.././styles/searchbar.css'
+import '.././styles/navbar.css'
 import { NavLink } from 'react-router-dom'
-import '.././styles/root_style.css'
 
 
 
@@ -34,7 +33,7 @@ const Header = () => {
           </a>
         </div>
 
-        <i class="fa-regular fa-user font-semibold  mr-3 text-lg "></i>
+        <img src="images/user.png" className='h-5 mr-3 opacity-60' alt="" />
 
         <NavLink to='/register' className='font-semibold   transition-all underline-gray	mr-3 hover:text-gray-950 dark:hover:text-gray-100 '  >Register</NavLink>
 
@@ -43,7 +42,7 @@ const Header = () => {
 
 
 
-        <i class="fa-solid fa-cart-shopping font-semibold  mx-3 text-lg hover:text-gray-950 dark:hover:text-gray-100 "></i>
+        <img src="images/bag.png" className='h-5 mr-3 opacity-60 ml-3' alt="" />
         <NavLink to='/cart' className='font-semibold  transition-all underline-gray	mr-3 hover:text-gray-950 dark:hover:text-gray-100 '  >Cart (0)</NavLink>
 
       </div>

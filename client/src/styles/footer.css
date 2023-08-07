@@ -1,0 +1,39 @@
+  /* navlink.css */
+  .underline-gray {
+    position: relative;
+    text-decoration: none;
+  }
+  
+  .underline-gray::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px; /* Controls the distance of the underline from the text */
+    width: 80%;
+    height: 2px; /* Sets the underline thickness */
+    background-color: gray; /* Sets the underline color to gray */
+    opacity: 0; /* Hides the underline initially */
+    transition: opacity 0.2s ease; /* Adds a smooth transition effect */
+  }
+  
+  .underline-gray:hover::after {
+    opacity: 1; /* Shows the underline on hover */
+  }
+  
+  .footeractive {
+    /* padding: 30px 0 8px; */
+    position: relative;
+  }
+  
+  
+  .footeractive::before {
+    content: "";
+    position: absolute;
+    left: 0%;
+    bottom: -4px;
+    width: 80%;
+    height: 2px;
+    /* transform: skew(-12deg) translateX(-50%); */
+    background: gray;
+    z-index: -1;
+  }

@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
         <div className=' text-zinc-600 dark:text-gray-300 dark:bg-zinc-900 ' >
             <Header  ></Header>
 
-            <main className='min-h-screen font-Poppins '  >
+            <main className=' font-Nunito ' style={{ minHeight: '90vh' }} >
                 {children}
             </main>
 
