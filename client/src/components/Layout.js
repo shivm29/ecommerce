@@ -2,8 +2,9 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import { Helmet } from "react-helmet";
-
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AnimatePresence } from 'framer-motion';
 const Layout = ({ children, title, description, keywords, author }) => {
 
     return (
@@ -20,9 +21,12 @@ const Layout = ({ children, title, description, keywords, author }) => {
             </Helmet>
             <Header  ></Header>
 
-            <main className=' font-Nunito ' style={{ minHeight: '90vh' }} >
-                {children}
-            </main>
+            <AnimatePresence >
+                <main className=' font-Nunito ' style={{ minHeight: '90vh' }} >
+                    <ToastContainer />
+                    {children}
+                </main>
+            </AnimatePresence>
 
             <Footer></Footer>
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import Layout from '../../components/Layout'
-import '../../styles/registrationForm.css'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import Layout from '../../components/Layout'
 import { motion } from 'framer-motion'
+const Login = () => {
 
-const Register = () => {
+
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -20,11 +20,11 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('/api/v1/auth/register', { name, email, password, phone, address })
+            const res = await axios.post('/api/v1/auth/login', { email, password })
 
             if (res.data.success) {
                 toast.success(res.data.message)
-                navigate('/login')
+                navigate('/')
             } else {
                 toast.error(res.data.message)
             }
@@ -62,19 +62,15 @@ const Register = () => {
                     exit={{ opacity: 0 }}
                     className='flex min-h-screen flex-1 items-center justify-center box-border pb-10' >
                     <div className='flex justify-center flex-col' >
-                        <h1 className='text-6xl font-extrabold mb-5 ' >Create new account</h1>
-                        <h2 className='font-semibold ml-1 mb-10' > Welcome to ShopCart Signup page</h2>
+                        <h1 className='text-6xl font-extrabold mb-5 ' >Welcome Back !</h1>
+                        <h2 className='font-semibold ml-1 mb-5' >Welcome to ShopCart Login page. We are glad to see you back !</h2>
 
                         <form action="" onSubmit={handleSubmit} >
-                            <div>
-                                <div>
-                                    <label className="custom-field one mr-3">
-                                        <input type="text" placeholder=" " required
-                                            value={name} onChange={(e) => setName(e.target.value)} />
-                                        <span className="placeholder">Name</span>
-                                    </label>
-                                    <label className="custom-field one">
+                            <div className='min-w-full '  >
+                                <div className='min-w-full' >
+                                    <label className="custom-field one min-w-full">
                                         <input type="email" placeholder=" " required
+                                            className='min-w-full'
                                             value={email} onChange={(e) => setEmail(e.target.value)}
                                         />
                                         <span className="placeholder">Email</span>
@@ -90,25 +86,11 @@ const Register = () => {
                                     </label>
                                 </div>
 
-                                <div>
-                                    <label className="custom-field one mr-3">
-                                        <input type="text" placeholder=" " required
-                                            value={phone} onChange={(e) => setPhone(e.target.value)}
-                                        />
-                                        <span className="placeholder">Phone</span>
-                                    </label>
-                                    <label className="custom-field one">
-                                        <input type="text" placeholder=" " required
-                                            value={address} onChange={(e) => setAddress(e.target.value)}
-                                        />
-                                        <span className="placeholder">Address</span>
-                                    </label>
-                                </div>
-                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... p-3 rounded-lg font-bold hover:scale-105' >Sign up</button>
+                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... p-3 rounded-lg font-bold hover:scale-105' >Login</button>
                             </div>
                         </form>
 
-                        <h3 className='text-zinc-700 ml-2 mb-10 text-sm font-semibold' >Already have an account? <span className='text-pink-500 cursor-pointer  font-bold' ><Link to='/login' > Login </Link></span></h3>
+                        <h3 className='text-zinc-700 ml-2 mb-10 text-sm font-semibold' >New to ShopCart? <span className='text-pink-500 cursor-pointer  font-bold' ><Link to='/register' > Create a new account </Link></span></h3>
                     </div>
                 </motion.div>
             </motion.div>
@@ -116,4 +98,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Login

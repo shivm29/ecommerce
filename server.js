@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from 'dotenv'
 import morgan from "morgan";
 import connectDB from "./config/db.js";
+import cors from 'cors';
 // import all the routes related to authentication from authRoute.js file
 import authRoutes from './routes/authRoute.js'
 
@@ -15,6 +16,7 @@ connectDB();
 const app = express()
 
 // middlewares 
+app.use(cors());
 app.use(express.json())
 app.use(morgan('dev'))
 
