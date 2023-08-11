@@ -14,13 +14,14 @@ const Register = () => {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
+    const [answer, setAnswer] = useState('')
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('/api/v1/auth/register', { name, email, password, phone, address })
+            const res = await axios.post('/api/v1/auth/register', { name, email, password, phone, address, answer })
 
             if (res.data.success) {
                 toast.success(res.data.message)
@@ -60,7 +61,7 @@ const Register = () => {
                     animate={{ opacity: 1, y: '0%' }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     exit={{ opacity: 0 }}
-                    className='flex min-h-screen flex-1 items-center justify-center box-border pb-10' >
+                    className='flex min-h-screen flex-1 items-start pt-32 justify-center box-border pb-10' >
                     <div className='flex justify-center flex-col' >
                         <h1 className='text-6xl font-extrabold mb-5 ' >Create new account</h1>
                         <h2 className='font-semibold ml-1 mb-10' > Welcome to ShopCart Signup page</h2>
@@ -88,6 +89,12 @@ const Register = () => {
                                         />
                                         <span className="placeholder">Password</span>
                                     </label>
+                                    <label className="custom-field one mr-3">
+                                        <input type="password" placeholder=" " required
+                                            value={answer} onChange={(e) => setAnswer(e.target.value)}
+                                        />
+                                        <span className="placeholder">What's your favorite movie?</span>
+                                    </label>
                                 </div>
 
                                 <div>
@@ -104,7 +111,7 @@ const Register = () => {
                                         <span className="placeholder">Address</span>
                                     </label>
                                 </div>
-                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... p-3 rounded-lg font-bold hover:scale-105' >Sign up</button>
+                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... opacity-70 p-3 rounded-lg font-bold hover:scale-105' >Sign up</button>
                             </div>
                         </form>
 

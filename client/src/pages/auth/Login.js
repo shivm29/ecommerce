@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Layout from '../../components/Layout'
 import { motion } from 'framer-motion'
+import { useAuth } from '../../context/Auth'
+
 const Login = () => {
 
-
-
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [address, setAddress] = useState('');
+    const [auth, setAuth] = useAuth();
 
     const navigate = useNavigate();
+    const location = useLocation()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +23,14 @@ const Login = () => {
 
             if (res.data.success) {
                 toast.success(res.data.message)
-                navigate('/')
+                setAuth({
+                    ...auth,
+                    user: res.data.user,
+                    token: res.data.token
+                })
+                localStorage.setItem('auth', JSON.stringify(res.data));
+                navigate(location.state || '/')
+
             } else {
                 toast.error(res.data.message)
             }
@@ -48,7 +54,9 @@ const Login = () => {
 
                 <div className='flex min-h-screen flex-1 '
                     style={{
-                        backgroundImage: "url('images/register_pic.jpg')", // Replace with the actual image path
+                        backgroundImage: "url('images/login_page_model.png')",
+                        opacity: '.9',
+                        // Replace with the actual image path
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
@@ -60,7 +68,7 @@ const Login = () => {
                     animate={{ opacity: 1, y: '0%' }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     exit={{ opacity: 0 }}
-                    className='flex min-h-screen flex-1 items-center justify-center box-border pb-10' >
+                    className='flex min-h-screen flex-1 items-start  pt-32 justify-center box-border pb-10' >
                     <div className='flex justify-center flex-col' >
                         <h1 className='text-6xl font-extrabold mb-5 ' >Welcome Back !</h1>
                         <h2 className='font-semibold ml-1 mb-5' >Welcome to ShopCart Login page. We are glad to see you back !</h2>
@@ -86,11 +94,13 @@ const Login = () => {
                                     </label>
                                 </div>
 
-                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... p-3 rounded-lg font-bold hover:scale-105' >Login</button>
+                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... opacity-70 p-3 rounded-lg font-bold hover:scale-105' >Login</button>
                             </div>
                         </form>
 
-                        <h3 className='text-zinc-700 ml-2 mb-10 text-sm font-semibold' >New to ShopCart? <span className='text-pink-500 cursor-pointer  font-bold' ><Link to='/register' > Create a new account </Link></span></h3>
+                        <h3 className='text-zinc-700 ml-2 mb-4  text-sm font-semibold' >New to ShopCart? <span className='text-pink-500 cursor-pointer  font-semibold text-sm' ><Link to='/register' > Create a new account </Link></span>   </h3>
+
+                        <span className='text-pink-500 cursor-pointer  font-semibold ml-2 text-xs place-self-end' ><Link to='/forgot-password' > Forgot password ? </Link></span>
                     </div>
                 </motion.div>
             </motion.div>

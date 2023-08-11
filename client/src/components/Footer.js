@@ -8,11 +8,11 @@ const Footer = () => {
       <h3  >All rights reserved &copy; shivm-dev</h3>
       <div >
 
-        <NavLink to='/about' className='  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 mr-5 font-semibold' activeClassName='footeractive' >About</NavLink>
+        <NavLink to='/about' className='  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 mr-5 font-semibold'  >About</NavLink>
 
-        <NavLink to='/contact' className='  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 mr-5 font-semibold' activeClassName='footeractive' >Contact</NavLink>
+        <NavLink to='/contact' className='  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 mr-5 font-semibold'  >Contact</NavLink>
 
-        <NavLink to='/privacy-policy' className='  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 mr-5 font-semibold' activeClassName='footeractive' >Privacy-policy</NavLink>
+        <NavLink to='/privacy-policy' className='  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 mr-5 font-semibold'  >Privacy-policy</NavLink>
 
 
       </div>

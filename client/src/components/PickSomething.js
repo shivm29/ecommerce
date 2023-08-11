@@ -16,7 +16,7 @@ const PickSomething = () => {
 
     return (
 
-        <div className={`flex justify-between box-border px-10 text-sm bg-yellow-100 py-2 ease-in`} >
+        <div className={`flex justify-between box-border px-10 text-sm   text-white bg-gradient-to-r from-purple-500 to-pink-500 py-2 ease-in opacity-70`} >
             <div className={`slider-content ${showContent1 ? '' : 'hidden'}`} id="slider-content-1">
                 Pick something nice for your partner, it's the least you can do!
             </div>

@@ -1,25 +1,25 @@
 import JWT from 'jsonwebtoken'
-import userModel from '../models/userModel'
+import userModel from '../models/userModel.js'
 
 // Protected routes token base
 // if the token is not provided or the provided token is wrong, next will not be implemented
 
 export const requireSignIn = async (req, res, next) => {
-    try{
+    try {
         const decode = JWT.verify(req.headers.authorization, process.env.JWT_SECRET)
         // passes the decoded data of user in req.user which is later used in isAdmin middleware
         req.user = decode;
         next()
-    }catch(error) {
+    } catch (error) {
         console.log(error)
     }
 }
 
 export const isAdmin = async (req, res, next) => {
-    try{
+    try {
         const user = await userModel.findById(req.user._id);
 
-        if(user.role !== 1) {
+        if (user.role !== 1) {
             return res.status(401).send({
                 success: false,
                 message: 'Unauthorized access'
@@ -30,7 +30,7 @@ export const isAdmin = async (req, res, next) => {
         }
 
     }
-     catch(error) {
+    catch (error) {
         console.log(error)
         res.status(401).send({
             success: false,
