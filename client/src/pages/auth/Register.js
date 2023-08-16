@@ -47,7 +47,7 @@ const Register = () => {
                 exit={{ opacity: 0 }}
                 className='flex justify-between items-center  min-h-screen min-w-full mt-4 ' >
 
-                <div className='flex min-h-screen flex-1 '
+                <div className='flex min-h-screen flex-1 max-[1200px]:hidden '
                     style={{
                         backgroundImage: "url('images/register_pic.jpg')", // Replace with the actual image path
                         backgroundSize: 'cover',
@@ -61,15 +61,15 @@ const Register = () => {
                     animate={{ opacity: 1, y: '0%' }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     exit={{ opacity: 0 }}
-                    className='flex min-h-screen flex-1 items-start pt-32 justify-center box-border pb-10' >
+                    className='flex min-h-screen  flex-1  pt-15 justify-center items-center box-border pb-10 max-[1200px]:pb-1 max-[1200px]:px-5 ' >
                     <div className='flex justify-center flex-col' >
-                        <h1 className='text-6xl font-extrabold mb-5 ' >Create new account</h1>
-                        <h2 className='font-semibold ml-1 mb-10' > Welcome to ShopCart Signup page</h2>
+                        <h1 className='text-6xl font-extrabold mb-5 max-[1200px]:text-3xl max-[1200px]:mb-3' >Create new account</h1>
+                        <h2 className='font-semibold ml-1 mb-10 max-[1200px]:text-sm max-[1200px]:mb-5' > Welcome to ShopCart Signup page</h2>
 
                         <form action="" onSubmit={handleSubmit} >
                             <div>
-                                <div>
-                                    <label className="custom-field one mr-3">
+                                <div >
+                                    <label className="custom-field one mr-3 ">
                                         <input type="text" placeholder=" " required
                                             value={name} onChange={(e) => setName(e.target.value)} />
                                         <span className="placeholder">Name</span>
@@ -111,11 +111,13 @@ const Register = () => {
                                         <span className="placeholder">Address</span>
                                     </label>
                                 </div>
-                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... opacity-70 p-3 rounded-lg font-bold hover:scale-105' >Sign up</button>
+                                <div className='  max-[1200px]:flex min-w-full justify-end max-[1200px]:mt-16' >
+                                    <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... opacity-70 p-3 rounded-lg font-bold hover:scale-105 max-[1200px]:text-sm max-[1200px]:p-3 max-[1200px]:px-4 max-[1200px]:place-self-end max-[1200px]:mb-10 max-[1200px]:mt-2 ' >Signup</button>
+                                </div>
                             </div>
                         </form>
 
-                        <h3 className='text-zinc-700 ml-2 mb-10 text-sm font-semibold' >Already have an account? <span className='text-pink-500 cursor-pointer  font-bold' ><Link to='/login' > Login </Link></span></h3>
+                        <h3 className='text-zinc-700 ml-2 mb-10 text-sm font-semibold max-[1200px]:text-xs' >Already have an account? <span className='text-pink-500 cursor-pointer  font-bold' ><Link to='/login' > Login </Link></span></h3>
                     </div>
                 </motion.div>
             </motion.div>

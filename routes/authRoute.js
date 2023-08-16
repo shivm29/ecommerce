@@ -1,7 +1,7 @@
 // This file contains the routes related to authentication e.g. /register & /login 
 import express from 'express'
 import { forgotPasswordController, loginController, registerController } from '../controllers/authController.js'
-import { requireSignIn } from '../middlewares/authMiddleware.js';
+import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 
 // create a new router
 const router = express.Router();
@@ -18,6 +18,12 @@ router.post('/forgot-password', forgotPasswordController)
 
 // protected route auth
 router.get('/user-auth', requireSignIn, (req, res) => {
+    res.status(200).send({
+        ok: true
+    })
+})
+// admin protected route auth
+router.get('/admin-auth', requireSignIn, isAdmin, (req, res) => {
     res.status(200).send({
         ok: true
     })

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import About from './pages/About';
@@ -11,10 +10,16 @@ import './App.css'
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/Routes/Private';
 import ForgotPassword from './pages/auth/ForgotPassword';
+import AdminRoute from './components/Routes/AdminRoute';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import User from './pages/Admin/User';
+import CreateProduct from './pages/Admin/CreateProduct';
+import CreateCategory from './pages/Admin/CreateCategory';
+import UserDashboard from './pages/User/UserDashboard';
+import Profile from './pages/User/Profile';
+import Orders from './pages/User/Orders';
 
 function App() {
-
-
 
   return (
     <>
@@ -22,7 +27,21 @@ function App() {
         <Route path='/' element={<HomePage />} />
         {/* private route */}
         <Route path='/dashboard' element={<PrivateRoute />}>
-          <Route path='' element={<Dashboard />} />
+          <Route path='user' element={<Dashboard />} />
+        </Route>
+
+        <Route path='/dashboard' element={<PrivateRoute />}>
+          <Route path='user' element={<Dashboard />} />
+          <Route path='user/profile' element={<Profile />} />
+          <Route path='user/orders' element={<Orders />} />
+        </Route>
+
+        <Route path='/dashboard' element={<AdminRoute />}>
+          <Route path='admin' element={<AdminDashboard />} />
+          <Route path='admin/create-product' element={<CreateProduct />} />
+          <Route path='admin/create-category' element={<CreateCategory />} />
+          <Route path='admin/users' element={<User />} />
+
         </Route>
 
         <Route path='/about' element={<About />} />

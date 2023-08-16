@@ -41,7 +41,7 @@ const ForgotPassword = () => {
                 exit={{ opacity: 0 }}
                 className='flex justify-between items-center  min-h-screen min-w-full mt-4 ' >
 
-                <div className='flex min-h-screen flex-1 '
+                <div className='flex min-h-screen flex-1 max-[1200px]:hidden '
                     style={{
                         backgroundImage: "url('images/forgot_wallpaper.jpg')",
                         opacity: '.9',
@@ -58,11 +58,11 @@ const ForgotPassword = () => {
                     animate={{ opacity: 1, y: '0%' }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     exit={{ opacity: 0 }}
-                    className='flex min-h-screen flex-1  justify-center items-start  pt-24 box-border pb-10' >
+                    className='flex min-h-screen flex-1  justify-center items-start  pt-24 box-border pb-10 max-[1200px]:pb-1 max-[1200px]:px-5 max-[1200px]:pt-8' >
                     <div className='flex justify-center flex-col' >
-                        <img src="images/finger_print.png" className='h-16 w-16 opacity-70 mb-5' alt="" />
-                        <h1 className='text-6xl font-extrabold mb-5 ' >Forgot Password?</h1>
-                        <h2 className='font-semibold ml-1 mb-5' >No worries ! Just enter your favorite movie name</h2>
+                        <img src="images/finger_print.png" className='h-16 w-16 opacity-70 mb-5  max-[1200px]:h-10 max-[1200px]:w-10 max-[1200px]:mb-4' alt="" />
+                        <h1 className='text-6xl font-extrabold mb-5 max-[1200px]:text-3xl max-[1200px]:mb-4' >Forgot Password?</h1>
+                        <h2 className='font-semibold ml-1 mb-5 max-[1200px]:text-sm max-[1200px]:mb-5' >No worries ! Just enter your favorite movie name</h2>
 
                         <form action="" onSubmit={handleSubmit} >
                             <div className='min-w-full '  >
@@ -91,10 +91,12 @@ const ForgotPassword = () => {
                                     </label>
                                 </div>
 
-                                <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 min-w-fit text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... opacity-70 p-3 rounded-lg font-bold hover:scale-105' >Reset Password</button>
+                                <div className='  max-[1200px]:flex min-w-full justify-end max-[1200px]:mt-16' >
+                                    <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-fit text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... opacity-70 p-3 rounded-lg font-bold hover:scale-105 max-[1200px]:text-sm max-[1200px]:p-3 max-[1200px]:px-4 max-[1200px]:place-self-end max-[1200px]:mb-10  ' >Reset Password</button>
+                                </div>
                             </div>
                         </form>
-                        <h3 className='text-zinc-700 ml-2 mb-4  text-sm font-semibold' >Go back to <span className='text-pink-500 cursor-pointer  font-semibold text-sm' ><Link to='/login' > Login? </Link></span>   </h3>
+                        <h3 className='text-zinc-700 ml-2 mb-4  text-sm font-semibold  max-[1200px]:text-xs place-self-end max-[1200px]:place-self-start ' >Go back to <span className='text-pink-500 cursor-pointer  font-semibold text-sm  max-[1200px]:text-xs place-self-end max-[1200px]:place-self-start ' ><Link to='/login' > Login? </Link></span>   </h3>
                     </div>
                 </motion.div>
             </motion.div>

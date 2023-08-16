@@ -6,10 +6,13 @@ module.exports = {
     extend: {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
-        Nunito: ["Nunito", "sans-serif"],
+        Nunito: ["DM Sans", "sans-serif"],
       },
       textUnderlineOffset: {
         8: '5px',
+      }
+      , backdropBlur: {
+        xs: '2px',
       }
     },
   },

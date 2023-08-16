@@ -192,3 +192,13 @@
     calc(var(--draw-duration) * 3), 
     calc(var(--draw-duration) * 2);
 }
+
+@media (max-width: 1200px) {
+  .custom-field{
+    font-size: 12px;
+  }
+
+  .custom-field input{
+    font-size: 12px;
+  }
+}

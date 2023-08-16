@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../styles/loading.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const LoadingComponent = () => {
+const LoadingComponent = ({path='/login'}) => {
 
     const [count, setCount] = useState(5)
     const navigate = useNavigate()
@@ -14,7 +14,7 @@ const LoadingComponent = () => {
             setCount((prevValue) => --prevValue);
 
         }, 1000)
-        count === 0 && navigate('/login', {
+        count === 0 && navigate(`${path}`, {
             state: location.pathname
         })
         return () => clearInterval(interval)

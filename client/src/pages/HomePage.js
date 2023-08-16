@@ -12,13 +12,13 @@ const HomePage = () => {
   return (
     <Layout title={'Shop now - ShopCart | Home'} >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.75, ease: 'easeIn' }}
+        initial={{ opacity: 0.5, y: '20%' }}
+        animate={{ opacity: 1, y: '0%' }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
         exit={{ opacity: 0 }} >
 
         {/* <PickSomething /> */}
-        <pre className=' overflow-x-hidden ' > {JSON.stringify(auth, null, 4)} </pre>
+        {/* <pre className=' overflow-x-hidden ' > {JSON.stringify(auth, null, 4)} </pre> */}
       </motion.div>
     </Layout>
   )
