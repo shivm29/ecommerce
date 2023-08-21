@@ -6,7 +6,7 @@ import cors from 'cors';
 // import all the routes related to authentication from authRoute.js file
 import authRoutes from './routes/authRoute.js'
 import categoryRoutes from './routes/categoryRoutes.js'
-
+import productRoutes from './routes/productRoutes.js'
 // configure env
 dotenv.config();
 
@@ -26,6 +26,8 @@ app.use(morgan('dev'))
 app.use('/api/v1/auth', authRoutes);
 // route for categories : 
 app.use('/api/v1/category', categoryRoutes)
+// route for products : 
+app.use('/api/v1/product', productRoutes)
 
 // basic route for home page | rest api
 app.get('/', (req, res) => {
