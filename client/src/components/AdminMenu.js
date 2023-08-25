@@ -7,7 +7,7 @@ const AdminMenu = () => {
 
     return (
         <div
-            className='flex flex-col max-[1000px]:min-w-full border mt-10 rounded-xl bg-white ml-5 text-sm  p-4 px-10  pt-5 drop-shadow-sm box-border w-fit max-[1000px]:ml-0  max-[1000px]:py-0  max-[1000px]:drop-shadow-none  max-[1000px]:border-none  max-[1000px]:pb-3   max-[1000px]:pt-0  custom-div '
+            className='flex flex-col max-[1000px]:min-w-full border mt-10 rounded-md bg-white ml-5 text-sm  p-4 px-10  pt-5 drop-shadow-sm box-border w-fit max-[1000px]:ml-0  max-[1000px]:py-0  max-[1000px]:drop-shadow-none  max-[1000px]:border-none  max-[1000px]:pb-3   max-[1000px]:pt-0  custom-div '
         >
 
             <div className='flex' >
