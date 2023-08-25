@@ -4,21 +4,23 @@ import { Select } from 'antd';
 import axios from 'axios';
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../../styles/navbar.css'
 
 const { Option } = Select
 
-const CreateProduct = () => {
-
+const UpdateProduct = () => {
+    const params = useParams()
     const [categories, setCategories] = useState([])
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [quantity, setQuantity] = useState("")
-    const [photo, setPhoto] = useState("")
+    const [photo, setPhoto] = useState(null)
     const [shipping, setShipping] = useState("")
     const [category, setCategory] = useState("")
+    const [log, setLog] = useState("")
+    const [Id, setID] = useState("")
 
     const navigate = useNavigate()
 
@@ -34,7 +36,7 @@ const CreateProduct = () => {
         }
     }
 
-    const handleCreateProduct = async (e) => {
+    const handleUpdateProduct = async (e) => {
         e.preventDefault();
 
         try {
@@ -43,15 +45,16 @@ const CreateProduct = () => {
             productData.append("description", description);
             productData.append("price", price);
             productData.append("quantity", quantity);
-            productData.append("photo", photo);
+            // productData.append("photo", photo);
             productData.append("category", category);
             productData.append("shipping", shipping);
+            photo && productData.append("photo", photo)
 
 
-            const { data } = await axios.post("/api/v1/product/create-product", productData);
+            const { data } = await axios.put(`/api/v1/product/update-product/${Id}`, productData);
 
             if (data?.success) {
-                toast.success("Product Created Successfully");
+                toast.success("Product Updated Successfully");
                 navigate("/dashboard/admin/products");
             } else {
                 toast.error(data.message);
@@ -62,10 +65,47 @@ const CreateProduct = () => {
         }
     };
 
+    // get product : 
+    const getProductDetails = async () => {
+        try {
+            const { data } = await axios.get(`/api/v1/product/get-product/${params.slug}`)
+
+            if (data?.success) {
+                console.log(data)
+                setID(data?.product[0]?._id)
+                setName(data?.product[0]?.name)
+                setPrice(data?.product[0]?.price)
+                setCategory(data?.product[0]?.category._id)
+                setShipping(data?.product[0]?.shipping)
+                setQuantity(data?.product[0]?.quantity)
+                setDescription(data?.product[0]?.description)
+            } else {
+                toast.error(data.message)
+                console.log("Error in fetching details")
+            }
+
+        } catch (error) {
+            console.log(error)
+            toast.error("Error in fetching details")
+        }
+    }
+
+    // const getPhoto = async () => {
+    //     try {
+    //         const { data } = await axios.get(`/api/v1/product/product-photo/${Id}`)
+    //     } catch (error) {
+    //         console.log("Error in fetching photo")
+    //     }
+    // }
+
 
     useEffect(() => {
         getAllcategories()
+        getProductDetails()
+
     }, [])
+
+    console.log(log)
 
     return (
         <AdminDashboard>
@@ -76,7 +116,7 @@ const CreateProduct = () => {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 exit={{ opacity: 0 }}
                 className='mt-2 p-10 pb-0 flex w-full flex-col'  >
-                <h1 className='mb-10 text-xl font-semibold text-zinc-600 font-Nunito' >Create a Product </h1>
+                <h1 className='mb-10 text-xl font-semibold text-zinc-600 font-Nunito' >Update Product </h1>
                 <div className='grid min-w-full grid-cols-3 gap-4 h-fit  box-border mb-5' >
 
 
@@ -108,10 +148,10 @@ const CreateProduct = () => {
                         <Select
                             size='medium'
                             showSearch
-                            style={{ fontWeight: 800 }}
                             onChange={(value) => {
                                 setCategory(value);
                             }}
+                            value={category}
                             className='w-full font-semibold '
                             placeholder="Select a Category"
                             optionFilterProp="children"
@@ -134,7 +174,6 @@ const CreateProduct = () => {
                     <div className='flex items-center' >
 
                         <Select
-
                             placeholder="Select Shipping "
                             size="medium"
                             showSearch
@@ -151,13 +190,15 @@ const CreateProduct = () => {
                 </div>
 
 
+
                 <textarea
                     type="text"
                     value={description}
                     placeholder="Write a Description"
-                    className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold "
+                    className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-2/3 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold mt-5 "
                     onChange={(e) => setDescription(e.target.value)}
                 />
+
 
                 <label className="mt-6 font-semibold border border-zinc-400 p-2 px-4 cursor-pointer w-fit text-sm  hover:scale-95 duration-100 text-zinc-500 ">
                     {photo ? photo.name : "Upload Photo"}
@@ -171,7 +212,7 @@ const CreateProduct = () => {
                 </label>
 
                 <div className='flex min-w-full justify-end' >
-                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mt-5 text-sm p-2 px-4 transition duration-100 hover:scale-95' onClick={handleCreateProduct}  >Submit</button>
+                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mt-5 text-sm p-2 px-4 transition duration-100 hover:scale-95' onClick={handleUpdateProduct}  >Update Product</button>
                 </div>
 
             </motion.div>
@@ -180,4 +221,4 @@ const CreateProduct = () => {
     )
 }
 
-export default CreateProduct
+export default UpdateProduct

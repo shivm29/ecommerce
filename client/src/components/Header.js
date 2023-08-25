@@ -33,21 +33,22 @@ const Header = () => {
     <div className='font-Nunito flex min-w-full min-h-fit px-10 py-5 text-sm justify-between  box-border max-[700px]:px-5 ' >
 
       <div className='flex justify-center items-center min-h-fit' >
-        <img width="64" height="64" src={`${BASE_URL}/images/site_icon.png`} className='h-8 w-8 opacity-75 max-[700px]:hidden' alt="external-cart-untact-colored-outline-part-1-colored-outline-lafs" />
 
-        <h3 className='text-xl font-extrabold	mx-2 max-[700px]:font-bold max-[700px]:text-sm max-[700px]:mx-1 '>ShopCart</h3>
+
+        <h3 className='text-xl font-extrabold	mx-2 max-[700px]:font-bold max-[700px]:text-sm max-[700px]:mx-1 '>The Lush</h3>
 
 
       </div>
 
       <div className='flex md:w-2/5 min-[1000px]:hidden ' >
-        <div className='flex w-full justify-between items-center bg-gray-200 rounded-full mr-5 px-2  py-2  md:py-3 ' >
-          <input type="text" className=' w-full bg-gray-200 focus:outline-none pl-3 rounded-full box-border text-xs ' placeholder='search here..' name="" id="" />
+        <div className='flex w-full justify-between items-center bg-gray-100 rounded-full mr-5 px-2  py-2  md:py-3 ' >
+          <input type="text" className=' w-full bg-gray-100 focus:outline-none pl-3 rounded-full box-border text-xs ' placeholder='search here..' name="" id="" />
           <i className="fas fa-search scale-90 "></i>
         </div>
 
         <div className='flex' >
-          <button onClick={() => setShowSidebar(true)} ><img src={`${BASE_URL}/images/burger.png`} className='h-5 opacity-70 ' alt="" /></button>
+          <button onClick={() => setShowSidebar(true)} ><img src={`${BASE_URL}/images/burger.png`} className='h-5 opacity-70 ' alt="" />
+          </button>
         </div>
       </div>
 

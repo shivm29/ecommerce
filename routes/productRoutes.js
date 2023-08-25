@@ -11,7 +11,7 @@ const router = express.Router();
 router.post('/create-product', requireSignIn, isAdmin, formidable(), createProductController);
 // GET ALL PRODUCTS | METHOD : GET
 router.get('/get-product', getProductController);
-// GET SINGLE PRODUCTS | METHOD : GET
+// GET SINGLE PRODUCT | METHOD : GET
 router.get('/get-product/:slug', getSingleProductController);
 // GET PRODUCT PHOTO | METHOD : GET
 router.get('/product-photo/:pid', getPhotoController);

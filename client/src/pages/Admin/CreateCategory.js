@@ -112,12 +112,12 @@ const CreateCategory = () => {
                 <CategoryForm name={name} setName={setName} handleSubmit={handleSubmit} />
 
                 <div className='min-w-full h-fit mt-6 flex flex-col justify-center items-center  ' >
-                    <div className='flex w-2/3 max-[1000px]:w-full h-fit justify-start items-center border-b box-border p-2 pb-4 shadow-sm mb-3 ' >
-                        <div className='flex h-full flex-1 font-semibold text-zinc-500 justify-center border-r ' >Categories</div>
+                    <div className='flex w-2/3 max-[1000px]:w-full h-fit justify-start items-center border-b-2 border-zinc-400 box-border p-2 pb-4 shadow-sm mb-3 ' >
+                        <div className='flex h-full flex-1 font-semibold text-zinc-500 justify-center border-r-2 border-zinc-400 ' >Categories</div>
                         <div className='flex h-full flex-1 font-semibold text-zinc-500 justify-center ' >Actions</div>
                     </div>
 
-                    <div className='flex flex-col min-w-full min-h-fit justify-center items-center mt-2 p-2 box-border ' >
+                    <div className='flex flex-col min-w-full min-h-fit justify-center items-center mt-2 p-2 box-border font-semibold ' >
                         {
                             categories?.map((c, key) => {
                                 return (
@@ -140,24 +140,24 @@ const CreateCategory = () => {
                                         {
                                             editedCategory === c.name ? (
                                                 <div className='flex h-full flex-1 justify-end box-border pr-2' >
-                                                    <button className='border   p-3 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-3  ' onClick={() => handleUpdate(c)}  >
+                                                    <button className='p-2 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-3  ' onClick={() => handleUpdate(c)}  >
                                                         {/* <img src="/images/edit.png" className='h-4 opacity-60' alt="" /> */}
                                                         <i className='fa fa-check opacity-70' ></i>
                                                     </button>
-                                                    <button className='border   p-3 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-2 ' onClick={() => setEditedCategory(null)} >
+                                                    <button className='p-2 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-2 ' onClick={() => setEditedCategory(null)} >
                                                         {/* <img src="/images/edit.png" className='h-4 opacity-60' alt="" /> */}
                                                         <i className='fa fa-xmark opacity-70' ></i>
                                                     </button>
                                                 </div>
                                             ) : (
                                                 <div className='flex h-full flex-1 justify-end box-border pr-2' >
-                                                    <button className='border   p-3 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-2 '
+                                                    <button className=' p-2 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-2 '
                                                         onClick={() => handleEdit(c)}
                                                     >
                                                         <img src="/images/edit.png" className='h-4 opacity-60' alt="" />
 
                                                     </button>
-                                                    <button className=' border   p-3 text-sm flex justify-center items-center rounded-full text-zinc-500  hover:scale-95 duration-75 max-[1000px]:w-fit max-[1000px]:p-2  ' onClick={() => handleDelete(c)}  >
+                                                    <button className=' p-2  text-sm flex justify-center items-center rounded-full text-zinc-500  hover:scale-95 duration-75 max-[1000px]:w-fit max-[1000px]:p-2  ' onClick={() => handleDelete(c)}  >
                                                         <img src="/images/delete.png" className='h-4 opacity-60' alt="" />
                                                     </button>
 
