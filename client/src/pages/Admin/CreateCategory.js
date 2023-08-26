@@ -4,13 +4,14 @@ import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import CategoryForm from '../../components/Form/CategoryForm'
+import { useAuth } from '../../context/Auth'
 const CreateCategory = () => {
 
     const [categories, setCategories] = useState([]);
     const [name, setName] = useState("");
     const [editedCategory, setEditedCategory] = useState(null);
     const [editedCategoryName, setEditedCategoryName] = useState("");
-
+    const [auth, setAuth] = useAuth()
 
     const handleEdit = (c) => {
         console.log(c.name)
@@ -39,7 +40,7 @@ const CreateCategory = () => {
 
     const handleDelete = async (c) => {
         try {
-            console.log("delete : ", c.slug)
+            console.log("delete : ", c)
             const { data } = await axios.delete(`/api/v1/category/delete-category/${c.slug}`)
             if (data.success) {
                 toast.success("Category deleted sucessfully")
@@ -109,6 +110,8 @@ const CreateCategory = () => {
 
                 className='box-border p-5 min-h-screen min-w-full flex flex-col justify-start items-center' >
 
+
+
                 <CategoryForm name={name} setName={setName} handleSubmit={handleSubmit} />
 
                 <div className='min-w-full h-fit mt-6 flex flex-col justify-center items-center  ' >
@@ -121,46 +124,35 @@ const CreateCategory = () => {
                         {
                             categories?.map((c, key) => {
                                 return (
-                                    <div key={key} className='flex w-2/3 max-[1000px]:w-full h-fit justify-between items-center box-border text-sm max-[1000px]:text-xs mb-3  rounded-lg p-1 px-4 ' >
+                                    <div key={key} className='flex w-2/3 max-[1000px]:w-full h-fit justify-between items-center box-border text-sm max-[1000px]:text-xs mb-3   p-1 px-4  border-zinc-300 ' >
 
                                         {
                                             editedCategory === c.name ? (
                                                 <input
                                                     type="text"
                                                     value={editedCategoryName}
-                                                    className='pb-1 text-zinc-500 border-b outline-none w-72 max-[1000px]:w-40'
+                                                    className='pb-1 text-zinc-500 border-b-2 border-zinc-400 pl-1 outline-none w-72 max-[1000px]:w-40'
                                                     onChange={(e) => setEditedCategoryName(e.target.value)}
 
                                                 />
 
-                                            ) : (<div className='flex h-full flex-1 items-center '>{c.name}</div>)
+                                            ) : (<div className='flex h-full flex-1 items-center  '>{c.name}</div>)
                                         }
                                         {/* <div className='border-b border-dashed border-zinc-300 h-0 flex-grow max-[1000px]:hidden ' ></div> */}
 
                                         {
                                             editedCategory === c.name ? (
-                                                <div className='flex h-full flex-1 justify-end box-border pr-2' >
-                                                    <button className='p-2 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-3  ' onClick={() => handleUpdate(c)}  >
-                                                        {/* <img src="/images/edit.png" className='h-4 opacity-60' alt="" /> */}
-                                                        <i className='fa fa-check opacity-70' ></i>
-                                                    </button>
-                                                    <button className='p-2 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-2 ' onClick={() => setEditedCategory(null)} >
-                                                        {/* <img src="/images/edit.png" className='h-4 opacity-60' alt="" /> */}
-                                                        <i className='fa fa-xmark opacity-70' ></i>
-                                                    </button>
+                                                <div className='flex h-full flex-1 justify-end box-border pr-2 ' >
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => handleUpdate(c)}  >Update</button>
+
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => setEditedCategory(null)} >Cancel</button>
+
                                                 </div>
                                             ) : (
                                                 <div className='flex h-full flex-1 justify-end box-border pr-2' >
-                                                    <button className=' p-2 text-sm flex justify-center items-center max-[1000px]:w-fit max-[1000px]:p-2 rounded-full text-zinc-500  hover:scale-95 duration-75 mr-2 '
-                                                        onClick={() => handleEdit(c)}
-                                                    >
-                                                        <img src="/images/edit.png" className='h-4 opacity-60' alt="" />
 
-                                                    </button>
-                                                    <button className=' p-2  text-sm flex justify-center items-center rounded-full text-zinc-500  hover:scale-95 duration-75 max-[1000px]:w-fit max-[1000px]:p-2  ' onClick={() => handleDelete(c)}  >
-                                                        <img src="/images/delete.png" className='h-4 opacity-60' alt="" />
-                                                    </button>
-
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => handleDelete(c)}  >Delete</button>
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => handleEdit(c)}  >Edit</button>
                                                 </div>
                                             )
                                         }

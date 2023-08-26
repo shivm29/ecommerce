@@ -14,6 +14,9 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    fit: {
+        type: String,
+    },
     price: {
         type: String,
         required: true

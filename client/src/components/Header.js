@@ -81,10 +81,10 @@ const Header = () => {
                 <div className="dropdown-menu">
                   <button className='hover:scale-95 duration-300' onClick={() => setOpenDropdown(false)} >
 
-                    <Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} >Dashboard</Link>
+                    <Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} className='font-semibold' >Dashboard</Link>
 
                   </button>
-                  <button className='mb-2 hover:scale-95 duration-300' id='logout' onClick={() => setOpen(true)} >Logout</button>
+                  <button className='mb-5 font-semibold ' onClick={() => setOpen(true)} >Logout</button>
                 </div>
               )}
             </div>
@@ -104,22 +104,21 @@ const Header = () => {
             margin: 'auto',
             right: 0,
             bottom: 0,
-            // backgroundColor: 'yellow',
+            backgroundColor: 'transparent',
             height: '200px',
             // height: 'fit-content',
             width: '50%',
-            maxWidth: '500px'
+            maxWidth: '500px',
+            borderRadius: '0px'
           },
           content: {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            border: '1px solid #ccc',
             background: '#fff',
             overflow: 'none',
             // WebkitOverflowScrolling: 'touch',
-            borderRadius: '10px',
-            border: '1px solid #E0E0E0	',
+            border: '1px solid grey	',
             outline: 'none',
             padding: '20px'
           }
@@ -130,12 +129,12 @@ const Header = () => {
           animate={{ opacity: 1, y: '0%' }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
           exit={{ opacity: 0 }}
-          className='flex justify-between flex-col' > <h2 className='font-Nunito text-zinc-600 text-sm mb-5' >Are you sure you want to Logout?</h2>
+          className='flex justify-between flex-col' > <h2 className='font-Nunito text-zinc-600 text-sm mb-5 font-semibold' >Are you sure you want to Logout?</h2>
           <div className='flex justify-end' >
-            <button className='font-Nunito text-zinc-100 text-sm  p-1.5 w-28 mr-2 rounded-lg bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... hover:scale-105 ease-in-out duration-300 opacity-70 '
+            <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mb-5 text-sm p-2 px-6 transition duration-100 hover:scale-95 '
               onClick={handleConfirmLogout}
             >Yes</button>
-            <button className='font-Nunito text-zinc-700 text-sm border-2 border-zinc-300 p-1.5 w-28 rounded-lg hover:scale-105 ease-in-out duration-300 '
+            <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mb-5 text-sm p-2 px-6 transition duration-100 hover:scale-95 '
               onClick={() => setOpen(false)}
             >No</button>
           </div></motion.div>

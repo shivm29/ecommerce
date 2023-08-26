@@ -41,7 +41,7 @@ const Products = () => {
                 {
                     products?.map((product) => {
                         return (
-                            <div className='flex flex-col min-w-full hover:scale-95 duration-100 mb-3' >
+                            <div className='flex flex-col min-w-full  duration-100 mb-3' >
                                 {/* product photo */}
                                 <Link
                                     to={`/dashboard/admin/product/${product.slug}`}

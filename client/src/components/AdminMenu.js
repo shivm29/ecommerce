@@ -18,8 +18,8 @@ const AdminMenu = () => {
             <div className='flex flex-col max-[1000px]:flex-row max-[1000px]:justify-around  max-[1000px]:min-w-full max-[1000px]:text-xs ' >
 
                 <NavLink
-                    to='/dashboard/admin/create-category'
-                    className={`w-fit  mb-3 font-semibold text-zinc-600 cursor-pointer ${location.pathname === '/dashboard/admin/create-category' ? 'font-bold text-black underline underline-offset-8' : ''}`}
+                    to='/dashboard/admin'
+                    className={`w-fit  mb-3 font-semibold text-zinc-600 cursor-pointer ${location.pathname === '/dashboard/admin' ? 'font-bold text-black underline underline-offset-8' : ''}`}
                 >
                     Create Category
                 </NavLink>

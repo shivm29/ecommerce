@@ -21,6 +21,7 @@ const UpdateProduct = () => {
     const [category, setCategory] = useState("")
     const [log, setLog] = useState("")
     const [Id, setID] = useState("")
+    const [fit, setFit] = useState("")
 
     const navigate = useNavigate()
 
@@ -48,6 +49,7 @@ const UpdateProduct = () => {
             // productData.append("photo", photo);
             productData.append("category", category);
             productData.append("shipping", shipping);
+            productData.append("fit", fit)
             photo && productData.append("photo", photo)
 
 
@@ -79,6 +81,8 @@ const UpdateProduct = () => {
                 setShipping(data?.product[0]?.shipping)
                 setQuantity(data?.product[0]?.quantity)
                 setDescription(data?.product[0]?.description)
+                setFit(data?.product[0]?.fit)
+
             } else {
                 toast.error(data.message)
                 console.log("Error in fetching details")
@@ -90,13 +94,24 @@ const UpdateProduct = () => {
         }
     }
 
-    // const getPhoto = async () => {
-    //     try {
-    //         const { data } = await axios.get(`/api/v1/product/product-photo/${Id}`)
-    //     } catch (error) {
-    //         console.log("Error in fetching photo")
-    //     }
-    // }
+    const deleteProduct = async () => {
+        try {
+
+            const { data } = await axios.delete(`/api/v1/product/delete-product/${Id}`)
+            if (data.success) {
+                console.log(data)
+                navigate('/dashboard/admin/products')
+            }
+            else {
+                console.log(data.message)
+                toast.error(data.message)
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
     useEffect(() => {
@@ -118,8 +133,6 @@ const UpdateProduct = () => {
                 className='mt-2 p-10 pb-0 flex w-full flex-col'  >
                 <h1 className='mb-10 text-xl font-semibold text-zinc-600 font-Nunito' >Update Product </h1>
                 <div className='grid min-w-full grid-cols-3 gap-4 h-fit  box-border mb-5' >
-
-
 
                     <input
                         type="text"
@@ -191,13 +204,22 @@ const UpdateProduct = () => {
 
 
 
-                <textarea
-                    type="text"
-                    value={description}
-                    placeholder="Write a Description"
-                    className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-2/3 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold mt-5 "
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                <div className='grid grid-cols-2' >
+                    <textarea
+                        type="text"
+                        value={description}
+                        placeholder="Write a Description"
+                        className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-2/3 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold mt-5 "
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <textarea
+                        type="text"
+                        value={fit}
+                        placeholder="Write a fit"
+                        className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-2/3 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold mt-5 "
+                        onChange={(e) => setFit(e.target.value)}
+                    />
+                </div>
 
 
                 <label className="mt-6 font-semibold border border-zinc-400 p-2 px-4 cursor-pointer w-fit text-sm  hover:scale-95 duration-100 text-zinc-500 ">
@@ -213,6 +235,7 @@ const UpdateProduct = () => {
 
                 <div className='flex min-w-full justify-end' >
                     <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mt-5 text-sm p-2 px-4 transition duration-100 hover:scale-95' onClick={handleUpdateProduct}  >Update Product</button>
+                    <button className='mr-5 font-semibold bg-zinc-700 cursor-pointer border border-zinc-400 text-white mt-5 text-sm p-2 px-4 transition duration-100 hover:scale-95' onClick={deleteProduct}  >Delete Product</button>
                 </div>
 
             </motion.div>

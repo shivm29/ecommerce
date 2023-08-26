@@ -8,6 +8,7 @@ module.exports = {
         Poppins: ["Poppins", "sans-serif"],
         Nunito: ["DM Sans", "sans-serif"],
       },
+
       textUnderlineOffset: {
         8: '5px',
       }

@@ -20,10 +20,11 @@
   appearance: none;
   background: #f2f2f2;
   padding: var(--field-padding);
-  border-radius: 10px;
+  border-radius: 0px;
   width: 250px;
   outline: none;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .custom-field .placeholder {
@@ -36,7 +37,8 @@
   top: 25px;
   line-height: 100%;
   transform: translateY(-50%);
-  color: #aaa;
+  color: #717171;
+  font-weight: 600;
   transition: 
     top 0.3s ease,
     color 0.3s ease,
@@ -69,7 +71,7 @@
 /* ONE */
 .custom-field.one input {
   background: none;
-  border: 2px solid #ddd;
+  border: 2px solid #878787cd;
   transition: border-color 0.3s ease;
 }
 

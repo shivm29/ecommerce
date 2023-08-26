@@ -19,6 +19,7 @@ const CreateProduct = () => {
     const [photo, setPhoto] = useState("")
     const [shipping, setShipping] = useState("")
     const [category, setCategory] = useState("")
+    const [fit, setFit] = useState("")
 
     const navigate = useNavigate()
 
@@ -46,6 +47,7 @@ const CreateProduct = () => {
             productData.append("photo", photo);
             productData.append("category", category);
             productData.append("shipping", shipping);
+            productData.append("fit", fit)
 
 
             const { data } = await axios.post("/api/v1/product/create-product", productData);
@@ -151,13 +153,22 @@ const CreateProduct = () => {
                 </div>
 
 
-                <textarea
-                    type="text"
-                    value={description}
-                    placeholder="Write a Description"
-                    className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold "
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                <div className='grid grid-cols-2' >
+                    <textarea
+                        type="text"
+                        value={description}
+                        placeholder="Write a Description"
+                        className="form-control border-b-2 font-semibold border-l-2  border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold "
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <textarea
+                        type="text"
+                        value={fit}
+                        placeholder="Explain Fit"
+                        className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold "
+                        onChange={(e) => setFit(e.target.value)}
+                    />
+                </div>
 
                 <label className="mt-6 font-semibold border border-zinc-400 p-2 px-4 cursor-pointer w-fit text-sm  hover:scale-95 duration-100 text-zinc-500 ">
                     {photo ? photo.name : "Upload Photo"}

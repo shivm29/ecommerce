@@ -5,7 +5,7 @@ import fs from 'fs'
 
 export const createProductController = async (req, res) => {
     try {
-        const { name, description, price, category, quantity, shipping } = req.fields
+        const { name, description, price, category, quantity, shipping, fit } = req.fields
         const { photo } = req.files
 
         // validation
@@ -182,3 +182,29 @@ export const updateProductController = async (req, res) => {
         })
     }
 }
+
+export const productFiltersController = async (req, res) => {
+    try {
+        const { checked, radio } = req.body;
+        let args = {};
+        if (checked.length > 0) args.category = checked;
+        if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+
+        const products = await productModel.find(args);
+
+        res.status(200).send({
+            success: true,
+            products
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            error,
+            success: false,
+            message: 'Error in filtering products'
+        })
+    }
+}
+
+

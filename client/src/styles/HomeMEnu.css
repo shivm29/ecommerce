@@ -1,0 +1,9 @@
+
+
+.custom-radio .ant-radio-inner{
+    display: none;
+}
+
+.custom-checkbox .ant-checkbox{
+    display: none;
+}

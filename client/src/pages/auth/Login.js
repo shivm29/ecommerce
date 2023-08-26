@@ -95,14 +95,14 @@ const Login = () => {
                                 </div>
 
                                 <div className='  max-[1200px]:flex min-w-full justify-end max-[1200px]:mt-16' >
-                                    <button type='submit' className='  ease-in-out duration-300 my-12 ml-1.5 w-1/4 text-white bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... opacity-70 p-3 rounded-lg font-bold hover:scale-105 max-[1200px]:text-sm max-[1200px]:p-3 max-[1200px]:px-4 max-[1200px]:place-self-end max-[1200px]:mb-10  ' >Login</button>
+                                    <button type='submit' className='p-3 px-6 my-10 bg-zinc-700 text-white font-semibold hover:bg-zinc-600 transform duration-100 ease-in-out '  >Login</button>
                                 </div>
                             </div>
                         </form>
 
-                        <h3 className='text-zinc-700 ml-2 mb-4  text-sm font-semibold max-[1200px]:text-xs ' >New to ShopCart? <span className='text-pink-500 cursor-pointer  font-semibold text-sm max-[1200px]:text-xs' ><Link to='/register' > Create a new account </Link></span>   </h3>
+                        <h3 className='text-zinc-500 ml-2 mb-4  text-sm font-semibold max-[1200px]:text-xs ' >New to ShopCart? <span className='text-zinc-800 cursor-pointer font-semibold text-sm max-[1200px]:text-xs' ><Link to='/register' > Create a new account </Link></span>   </h3>
 
-                        <span className='text-pink-500 cursor-pointer  font-semibold ml-2 text-sm max-[1200px]:text-xs place-self-end max-[1200px]:place-self-start ' ><Link to='/forgot-password' > Forgot password ? </Link></span>
+                        <span className='text-zinc-800 cursor-pointer  font-semibold ml-2 text-sm max-[1200px]:text-xs place-self-end max-[1200px]:place-self-start  ' ><Link to='/forgot-password' > Forgot password ? </Link></span>
                     </div>
                 </motion.div>
             </motion.div>
