@@ -18,7 +18,36 @@ const HomePage = () => {
   const [checked, setChecked] = useState([])
   const [radio, setRadio] = useState([])
   const [categories, setCategories] = useState([])
+  const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(1)
 
+
+  // load more
+
+
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      setLoading(false);
+      setProducts([...products, ...data?.products]);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+
+  // get total count
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get('/api/v1/product/product-count')
+      setTotal(data?.total)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // get all categories
   const getAllcategories = async () => {
@@ -35,12 +64,14 @@ const HomePage = () => {
 
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get('/api/v1/product/get-product')
-
+      setLoading(true)
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`)
+      setLoading(false)
       if (data.success) {
         console.log("Data : ", data)
         setProducts(data?.products)
       } else {
+        setLoading(false)
         // toast.error("Error in getting products")
       }
 
@@ -78,7 +109,13 @@ const HomePage = () => {
 
   useEffect(() => {
     getAllcategories()
+    getTotal()
   }, [])
+
+  useEffect(() => {
+    if (page === 1) return;
+    loadMore();
+  }, [page]);
 
   console.log("checked", checked)
   console.log("radio", radio)
@@ -138,7 +175,7 @@ const HomePage = () => {
                   ))
                 }
               </Radio.Group></div>
-            <button className='font-semibold font-Nunito text-sm mt-3' onClick={() => window.location.reload()} >Reset Filters</button>
+            <button className='font-semibold font-Nunito text-sm mt-3' onClick={() => window.location.reload()} >Reset Filters {total} </button>
 
           </div>
 
@@ -174,10 +211,26 @@ const HomePage = () => {
               }
             </motion.div>
           </div>
-        </div>
 
+
+        </div>
+        <div className='flex min-w-full justify-center' >
+          {
+            products && products.length < total && (
+              <button className='border-2 border-zinc-600 p-2 px-6 font-bold my-10 text-zinc-600 hover:bg-zinc-900  hover:text-white transition ease-in-out duration-200  text-sm '
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
+                }}
+              >
+                {loading ? 'Loading ...' : 'Load More'}
+              </button>
+
+            )
+          }
+        </div>
       </motion.div>
-    </Layout>
+    </Layout >
   )
 }
 
