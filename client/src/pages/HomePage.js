@@ -20,7 +20,7 @@ const HomePage = () => {
   const [categories, setCategories] = useState([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(1)
+  const [loading, setLoading] = useState(0)
 
 
   // load more
@@ -28,6 +28,7 @@ const HomePage = () => {
 
   const loadMore = async () => {
     try {
+
       setLoading(true);
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
@@ -95,21 +96,31 @@ const HomePage = () => {
   // get filtered products : 
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post("/api/v1/product/product-filters", {
-        checked,
-        radio,
-      });
-      setProducts(data?.products);
+      if (checked.length === 0 && radio.length === 0) {
+        // If no checkboxes or radio options are selected, display all products
+        getAllProducts();
+      } else {
+        // Filter products based on checked checkboxes and radio options
+        const { data } = await axios.post("/api/v1/product/product-filters", {
+          checked,
+          radio,
+        });
+        setProducts(data?.products);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    filterProduct();
+  }, [checked, radio]);
 
 
   useEffect(() => {
     getAllcategories()
     getTotal()
+    getAllProducts()
   }, [])
 
   useEffect(() => {
@@ -120,9 +131,9 @@ const HomePage = () => {
   console.log("checked", checked)
   console.log("radio", radio)
 
-  useEffect(() => {
-    if (!checked.length || !radio.length) getAllProducts();
-  }, [checked.length, radio.length]);
+  // useEffect(() => {
+  //   if (!checked.length || !radio.length) getAllProducts();
+  // }, [checked.length, radio.length]);
 
   useEffect(() => {
     if (checked.length || radio.length) filterProduct();
@@ -141,7 +152,7 @@ const HomePage = () => {
 
           {/* <HomeMenu checked={checked} radio={radio} setRadio={setRadio} setChecked={setChecked} handleFilter={handleFilter} /> */}
 
-          <div className='p-6 px-7 pr-12 w-fit w-56' >
+          <div className='p-6 px-7 pr-12  w-60' >
             <h2 className='font-bold text-zinc-900 font-Nunito mb-5' >Shop by Product</h2>
 
             <div className='flex flex-col' >
@@ -175,7 +186,7 @@ const HomePage = () => {
                   ))
                 }
               </Radio.Group></div>
-            <button className='font-semibold font-Nunito text-sm mt-3' onClick={() => window.location.reload()} >Reset Filters {total} </button>
+            <button className='font-semibold font-Nunito text-sm mt-3' onClick={() => window.location.reload()} >Reset Filters</button>
 
           </div>
 

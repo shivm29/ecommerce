@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../styles/loading.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const LoadingComponent = ({path='/login'}) => {
+const LoadingComponent = ({ path = '/login' }) => {
 
     const [count, setCount] = useState(5)
     const navigate = useNavigate()

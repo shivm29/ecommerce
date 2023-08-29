@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import { BASE_URL } from '../config'
 import { motion } from 'framer-motion'
 import SidebarComponent from './SidebarComponent'
+import SearchForm from './Form/SearchForm'
 
 const Header = () => {
 
@@ -58,12 +59,7 @@ const Header = () => {
 
         <NavLink to='/category' className='font-semibold  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 ml-5'  >Category</NavLink>
 
-        <div className='search-box mx-10 dark:bg-zinc-700'  >
-          <input className="search-text dark:text-gray-300" type="text" placeholder="Search Product" />
-          <a href="#" className="search-btn">
-            <i className="fas fa-search"></i>
-          </a>
-        </div>
+        <SearchForm />
 
         <img src={`${BASE_URL}/images/user.png`} className='h-5 mr-2 opacity-60' alt="" />
 
