@@ -31,7 +31,7 @@ const SearchPage = () => {
                                 <div key={product._id} className='flex flex-col min-w-full  duration-100 mb-3' >
                                     {/* product photo */}
                                     <Link
-                                        to={`/dashboard/admin/product/${product.slug}`}
+                                        to={`/product/${product.slug}`}
                                     >
                                         <img src={`/api/v1/product/product-photo/${product._id}`} alt="" />
                                     </Link>

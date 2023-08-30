@@ -21,6 +21,7 @@ import Orders from './pages/User/Orders';
 import Product from './pages/Admin/Products'
 import UpdateProduct from './pages/Admin/UpdateProduct';
 import SearchPage from './pages/SearchPage';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         {/* private route */}
         <Route path='/search' element={<SearchPage />} />
+        <Route path='/product/:slug' element={<ProductDetails />} />
         <Route path='/dashboard' element={<PrivateRoute />}>
           <Route path='user' element={<Dashboard />} />
         </Route>

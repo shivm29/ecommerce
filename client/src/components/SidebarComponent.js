@@ -26,13 +26,9 @@ const SidebarComponent = ({ showSidebar, setShowSidebar, }) => {
     }
 
     return (
-        <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: showSidebar ? '0%' : '100%' }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            exit={{ opacity: 0, x: '100%' }}
+        <div
 
-            className={`flex flex-col box-border p-6 items-start min-h-full bg-white drop-shadow-xl w-72 z-50 absolute top-0 right-0  ${showSidebar ? '' : 'hidden'} rounded-xl `}>
+            className={`flex flex-col box-border p-6 items-start min-h-full bg-white drop-shadow-xl w-72 z-50 absolute top-0 right-0  ${showSidebar ? '' : 'hidden'} rounded-md overflow-x-hidden `}>
             <div className='flex min-w-full justify-between ' >
 
                 <button className='place-self-end ' onClick={() => setShowSidebar(false)} >
@@ -46,31 +42,33 @@ const SidebarComponent = ({ showSidebar, setShowSidebar, }) => {
 
             </div>
 
-            <div className='flex flex-col flex-1 min-w-full justify-between py-10 px-3' >
+            <div className='flex flex-col flex-1 min-w-full py-7 px-3 text-xs ' >
                 <div>
-                    <h1 className='font-semibold mb-3' onClick={() => setShowSidebar(false)} ><Link to='/' >Home</Link></h1>
-                    <h1 className='font-semibold mb-3' onClick={() => setShowSidebar(false)}><Link to='/categories' >Categories</Link></h1>
+                    <h1 className='mb-3 font-semibold' onClick={() => setShowSidebar(false)} ><Link to='/' >Account</Link></h1>
 
-                    <h1 className='font-semibold mb-3' onClick={() => setShowSidebar(false)} ><Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} >Dashboard</Link></h1>
-                    <h1 className='font-semibold mb-3' onClick={() => setShowSidebar(false)} ><Link to='/cart' >Cart (0)</Link></h1>
+                    <h1 className='mb-2 ml-2' onClick={() => setShowSidebar(false)} ><Link to='/' >Home</Link></h1>
+                    <h1 className=' mb-2 ml-2' onClick={() => setShowSidebar(false)}><Link to='/categories' >Categories</Link></h1>
+
+                    <h1 className=' mb-2 ml-2' onClick={() => setShowSidebar(false)} ><Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} >Dashboard</Link></h1>
+                    <h1 className=' mb-2 ml-2 ' onClick={() => setShowSidebar(false)} ><Link to='/cart' >Cart (0)</Link></h1>
+
+                    {auth?.user && (
+
+                        <h1 className=' mb-2 ml-2 font-semibold' onClick={() => { setOpen(true); setShowSidebar(false) }
+
+                        } > &nbsp;Logout</h1>
+
+                    )}
+
+                    {
+                        !auth?.user && (
+                            <div>
+                                <h1 className='font-semibold mb-3 ml-2' onClick={() => setShowSidebar(false)} ><Link to='/login' >Login</Link></h1>
+                                <h1 className='font-semibold mb-3 ml-2' onClick={() => setShowSidebar(false)} ><Link to='/register' >Register</Link></h1>
+                            </div>
+                        )
+                    }
                 </div>
-
-                {
-                    !auth?.user ? (
-                        <div>
-                            <h1 className='font-semibold mb-3' onClick={() => setShowSidebar(false)} ><Link to='/login' >Login</Link></h1>
-                            <h1 className='font-semibold mb-3' onClick={() => setShowSidebar(false)} ><Link to='/register' >Register</Link></h1>
-                        </div>
-                    ) : (
-                        <div>
-                            <h1 className='font-semibold mb-3' onClick={() => { setOpen(true); setShowSidebar(false) }
-
-                            } >Logout</h1>
-                        </div>
-                    )
-                }
-
-
 
             </div>
 
@@ -120,7 +118,7 @@ const SidebarComponent = ({ showSidebar, setShowSidebar, }) => {
                         >No</button>
                     </div></motion.div>
             </ReactModal>
-        </motion.div>
+        </div>
     )
 }
 

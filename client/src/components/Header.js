@@ -87,7 +87,7 @@ const Header = () => {
           )
         }
 
-        <img src="images/bag.png" className='h-5 mr-3 opacity-60 ml-3' alt="" />
+        <img src={`${BASE_URL}/images/bag.png`} className='h-5 mr-3 opacity-60 ml-3' alt="" />
         <NavLink to='/cart' className='font-semibold  transition-all underline-gray	mr-3 hover:text-gray-950 dark:hover:text-gray-100 '  >Cart (0)</NavLink>
 
       </div>

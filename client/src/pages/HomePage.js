@@ -150,9 +150,10 @@ const HomePage = () => {
         <div className='flex w-full min-h-screen' >
 
 
-          {/* <HomeMenu checked={checked} radio={radio} setRadio={setRadio} setChecked={setChecked} handleFilter={handleFilter} /> */}
+          <HomeMenu checked={checked} radio={radio} setRadio={setRadio} setChecked={setChecked} handleFilter={handleFilter} />
 
-          <div className='p-6 px-7 pr-12  w-60' >
+
+          {/* <div className='p-6 px-7 pr-12   max-[800px]:hidden max-[1200px]:text-sm ' >
             <h2 className='font-bold text-zinc-900 font-Nunito mb-5' >Shop by Product</h2>
 
             <div className='flex flex-col' >
@@ -160,7 +161,7 @@ const HomePage = () => {
                 categories?.map((c) => {
                   return (
 
-                    <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} className={`font-semibold text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : ''} hover:font-bold font-Nunito mb-2 `} >
+                    <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} className={`font-semibold text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : ''} hover:font-bold font-Nunito mb-2 max-[1200px]:text-xs `} >
                       {c.name}
                     </Checkbox>
                   )
@@ -169,7 +170,7 @@ const HomePage = () => {
             </div>
 
             <h2 className='font-bold text-zinc-900 font-Nunito mt-7 mb-5 ' >Trending Now</h2>
-            <h3 className='text-zinc-700 text-sm mb-1 font-semibold cursor-pointer hover:font-semibold ' >Trending Now</h3>
+            <h3 className='text-zinc-700 text-sm mb-1 font-semibold cursor-pointer hover:font-semibold  max-[1200px]:text-xs' >Trending Now</h3>
 
 
             <h2 className='font-bold text-zinc-900 font-Nunito mt-7 mb-5' >Shop by Price</h2>
@@ -181,14 +182,14 @@ const HomePage = () => {
                     <div key={p._id} className='mb-1' >
 
                       <Radio className={`font-semibold text-zinc-700 custom-radio ${radio === p.array ? 'underline underline-offset-8 ' : ''
-                        } hover:font-bold font-Nunito mb-2 `} value={p.array} > {p.name} </Radio>
+                        } hover:font-bold font-Nunito mb-2  max-[1200px]:text-xs `} value={p.array} > {p.name} </Radio>
                     </div>
                   ))
                 }
               </Radio.Group></div>
             <button className='font-semibold font-Nunito text-sm mt-3' onClick={() => window.location.reload()} >Reset Filters</button>
 
-          </div>
+          </div> */}
 
           {/* Products */}
           <div className='flex flex-1 ' >
@@ -197,14 +198,14 @@ const HomePage = () => {
               animate={{ opacity: 1, y: '0%' }}
               transition={{ duration: 1, ease: 'easeOut' }}
               exit={{ opacity: 0 }}
-              className='grid p-5 box-border min-w-full h-fit grid-cols-4 gap-2 max-[800px]:grid-cols-3 max-[600px]:grid-cols-2  ' >
+              className='grid p-5 box-border min-w-full h-fit grid-cols-4 gap-2 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2  ' >
               {
                 products?.map((product) => {
                   return (
                     <div key={product._id} className='flex flex-col min-w-full  duration-100 mb-3' >
                       {/* product photo */}
                       <Link
-                        to={`/dashboard/admin/product/${product.slug}`}
+                        to={`/product/${product.slug}`}
                       >
                         <img src={`/api/v1/product/product-photo/${product._id}`} alt="" />
                       </Link>

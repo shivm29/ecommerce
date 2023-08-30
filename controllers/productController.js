@@ -78,7 +78,7 @@ export const getProductController = async (req, res) => {
 
 export const getSingleProductController = async (req, res) => {
     try {
-        const product = await productModel.find({ slug: req.params.slug }).select("-photo").populate("category")
+        const product = await productModel.findOne({ slug: req.params.slug }).select("-photo").populate("category")
         res.status(200).send({
             success: true,
             message: 'Single product fetched',
@@ -284,3 +284,28 @@ export const searchProductController = async (req, res) => {
         })
     }
 }
+
+
+export const relatedProductController = async (req, res) => {
+    try {
+
+        const { pid, cid } = req.params
+        const products = await productModel.find({
+            category: cid,
+            _id: { $ne: pid }
+        }).select("-photo").limit(6).populate("category")
+
+        res.status(200).send({
+            success: true,
+            products,
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({
+            message: 'Error in related products',
+            error,
+            success: false
+        })
+    }
+} 

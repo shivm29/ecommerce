@@ -28,7 +28,7 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
     // console.log("checked", radio)
 
     return (
-        <div className='p-6 px-7 pr-12 w-fit w-56' >
+        <div className='max-[900px]:hidden  p-6 px-7 pr-12 w-fit' >
             <h2 className='font-bold text-zinc-900 font-Nunito mb-5' >Shop by Product</h2>
 
             <div className='flex flex-col' >
@@ -36,7 +36,7 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
                     categories?.map((c) => {
                         return (
 
-                            <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} className={`font-semibold text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : ''} hover:font-bold font-Nunito mb-2 `} >
+                            <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} className={` text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : ''} hover:font-bold font-Nunito mb-2  max-[1200px]:text-xs `} >
                                 {c.name}
                             </Checkbox>
                         )
@@ -45,7 +45,7 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
             </div>
 
             <h2 className='font-bold text-zinc-900 font-Nunito mt-7 mb-5 ' >Trending Now</h2>
-            <h3 className='text-zinc-700 text-sm mb-1 font-semibold cursor-pointer hover:font-semibold ' >Trending Now</h3>
+            <h3 className='text-zinc-700 text-sm mb-1  cursor-pointer hover:font-semibold max-[1200px]:text-xs' >Trending Now</h3>
 
 
             <h2 className='font-bold text-zinc-900 font-Nunito mt-7 mb-5' >Shop by Price</h2>
@@ -56,8 +56,8 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
                         Prices?.map((p) => (
                             <div key={p._id} className='mb-1' >
 
-                                <Radio className={`font-semibold text-zinc-700 custom-radio ${radio === p.array ? 'underline underline-offset-8 ' : ''
-                                    } hover:font-bold font-Nunito mb-2 `} value={p.array} > {p.name} </Radio>
+                                <Radio className={` text-zinc-700 custom-radio ${radio === p.array ? 'underline underline-offset-8 ' : ''
+                                    } hover:font-bold font-Nunito mb-2 max-[1200px]:text-xs`} value={p.array} > {p.name} </Radio>
                             </div>
                         ))
                     }
