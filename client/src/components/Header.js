@@ -10,13 +10,14 @@ import { BASE_URL } from '../config'
 import { motion } from 'framer-motion'
 import SidebarComponent from './SidebarComponent'
 import SearchForm from './Form/SearchForm'
+import useCategory from '../hooks/useCategory'
 
 const Header = () => {
 
+  const categories = useCategory()
   const [auth, setAuth] = useAuth()
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
-  const [openDropdown, setOpenDropdown] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false)
 
   const handleConfirmLogout = () => {
@@ -36,10 +37,13 @@ const Header = () => {
       <div className='flex justify-center items-center min-h-fit' >
 
 
-        <h3 className='text-xl font-extrabold	mx-2 max-[700px]:font-bold max-[700px]:text-sm max-[700px]:mx-1 '>The Lush</h3>
+        <h3 className='text-xl font-extrabold	mx-2 max-[700px]:font-bold max-[700px]:text-sm max-[700px]:mx-1 '>
+          The Vesh</h3>
 
 
       </div>
+
+
 
       <div className='flex md:w-2/5 min-[1000px]:hidden ' >
         <div className='flex w-full justify-between items-center bg-gray-100 rounded-full mr-5 px-2  py-2  md:py-3 ' >
@@ -57,7 +61,24 @@ const Header = () => {
 
         <NavLink to='/' className='font-semibold transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100'   >Home</NavLink>
 
-        <NavLink to='/category' className='font-semibold  transition-all underline-gray	hover:text-gray-950 dark:hover:text-gray-100 ml-5'  >Category</NavLink>
+        <NavLink to='/' className='drop-down font-semibold  transition-all 	hover:text-gray-950 dark:hover:text-gray-100 ml-5 '  >Category
+
+          <div className="drop-down-content">
+            <div className='py-2 bg-transparent'  ></div>
+            <div className='dropdownoptionscontainer' >
+              <Link className='font-Nunito font-semibold' to={`/categories`} >All Categories</Link>
+              {
+                categories?.map(cat => {
+                  return (
+                    <Link className='font-Nunito font-semibold' to={`/category/${cat.slug}`} >{cat.name}</Link>
+                  )
+                })
+              }
+            </div>
+          </div>
+        </NavLink>
+
+
 
         <SearchForm />
 
@@ -71,21 +92,27 @@ const Header = () => {
             <NavLink to='/login' className='font-semibold   transition-all underline-gray	mr-3 hover:text-gray-950 dark:hover:text-gray-100 '  >Login</NavLink>
 
           </>) : (
-            <div className="dropdown mr-3">
-              <button className="dropdown-toggle font-Nunito font-semibold" onClick={() => setOpenDropdown(!openDropdown)}>{auth?.user?.name} <i className="fa-solid fa-caret-down ml-2"></i> </button>
-              {openDropdown && (
-                <div className="dropdown-menu">
-                  <button className='hover:scale-95 duration-300' onClick={() => setOpenDropdown(false)} >
+            <div className="drop-down mr-3">
+              <button className=" font-Nunito font-semibold" >{auth?.user?.name} <i className="fa-solid fa-caret-down ml-2"></i> </button>
+              <div className='drop-down-content' >
+                <div className="drop-down-menu">
+
+                  <div className="dropdownoptionscontainer  ">
+
 
                     <Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} className='font-semibold' >Dashboard</Link>
 
-                  </button>
-                  <button className='mb-5 font-semibold ' onClick={() => setOpen(true)} >Logout</button>
+
+                    <a href='#' onClick={() => setOpen(true)} >Logout</a>
+
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           )
         }
+
+
 
         <img src={`${BASE_URL}/images/bag.png`} className='h-5 mr-3 opacity-60 ml-3' alt="" />
         <NavLink to='/cart' className='font-semibold  transition-all underline-gray	mr-3 hover:text-gray-950 dark:hover:text-gray-100 '  >Cart (0)</NavLink>
@@ -121,10 +148,7 @@ const Header = () => {
         }}
       >
         <motion.div
-          initial={{ opacity: 0.5, y: '20%' }}
-          animate={{ opacity: 1, y: '0%' }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
-          exit={{ opacity: 0 }}
+
           className='flex justify-between flex-col' > <h2 className='font-Nunito text-zinc-600 text-sm mb-5 font-semibold' >Are you sure you want to Logout?</h2>
           <div className='flex justify-end' >
             <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mb-5 text-sm p-2 px-6 transition duration-100 hover:scale-95 '
