@@ -15,7 +15,6 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import User from './pages/Admin/User';
 import CreateProduct from './pages/Admin/CreateProduct';
 import CreateCategory from './pages/Admin/CreateCategory';
-import UserDashboard from './pages/User/UserDashboard';
 import Profile from './pages/User/Profile';
 import Orders from './pages/User/Orders';
 import Product from './pages/Admin/Products'
@@ -37,20 +36,16 @@ function App() {
         <Route path='/categories' element={<CategoriesPage />} />
         <Route path="/category/:slug" element={<CategoryProduct />} />
         <Route path='/product/:slug' element={<ProductDetails />} />
-        <Route path='/dashboard' element={<PrivateRoute />}>
-          <Route path='user' element={<Dashboard />} />
-        </Route>
 
-        <Route path='/dashboard' element={<PrivateRoute />}>
-          <Route path='user' element={<Dashboard />} />
-          <Route path='user/profile' element={<Profile />} />
-          <Route path='user/orders' element={<Orders />} />
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          {/* <Route path="user" element={<Dashboard />} /> */}
+          <Route path="user/orders" element={<Orders />} />
+          <Route path="user/profile" element={<Profile />} />
         </Route>
 
         <Route path='/dashboard' element={<AdminRoute />}>
           <Route path='admin' element={<CreateCategory />} />
           <Route path='admin/create-product' element={<CreateProduct />} />
-          {/* <Route path='admin/create-category' element={<CreateCategory />} /> */}
           <Route path='admin/users' element={<User />} />
           <Route path='admin/products' element={<Product />} />
           <Route path='admin/product/:slug' element={<UpdateProduct />} ></Route>

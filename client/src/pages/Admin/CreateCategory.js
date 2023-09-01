@@ -108,7 +108,7 @@ const CreateCategory = () => {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 exit={{ opacity: 0 }}
 
-                className='box-border p-5 min-h-screen min-w-full flex flex-col justify-start items-center' >
+                className='border-t border-l border-zinc-500 box-border p-5 pt-10 min-h-screen min-w-full flex flex-col justify-start items-center' >
 
 
 

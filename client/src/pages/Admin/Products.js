@@ -37,7 +37,7 @@ const Products = () => {
                 animate={{ opacity: 1, y: '0%' }}
                 transition={{ duration: 1, ease: 'easeOut' }}
                 exit={{ opacity: 0 }}
-                className='grid p-5 box-border min-w-full h-fit grid-cols-4 gap-2 max-[800px]:grid-cols-3 max-[600px]:grid-cols-2  ' >
+                className=' border-t border-l border-zinc-500 grid p-5 box-border min-w-full h-fit grid-cols-4 gap-2 max-[800px]:grid-cols-3 max-[600px]:grid-cols-2  ' >
                 {
                     products?.map((product) => {
                         return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import { useCart } from '../context/Cart'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/Auth'
 import TruncatedText from '../components/TruncatedText'
 
@@ -9,6 +9,7 @@ const CartPage = () => {
     const [auth] = useAuth()
     const [cart, setCart] = useCart()
     const [total, setTotal] = useState(0)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -112,7 +113,9 @@ const CartPage = () => {
                                     <>
                                         <h3 className='place-self-start font-medium text-sm mt-3' >Login to use your personal offers</h3>
 
-                                        <button className='p-3 w-full  transition ease-in-out duration-100 border border-black font-semibold text-sm mt-5 max-[800px]:text-xs' ><Link to='/login' >Log in</Link></button></>
+                                        <button onClick={() => navigate('/login', {
+                                            state: '/cart'
+                                        })} className='p-3 w-full  transition ease-in-out duration-100 border border-black font-semibold text-sm mt-5 max-[800px]:text-xs' >Log in</button></>
 
                                 )
                             }
@@ -135,7 +138,17 @@ const CartPage = () => {
 
                             </div>
 
-                            <button className={`p-3 text-sm bg-zinc-900 text-zinc-200 w-full  transition ease-in-out duration-100 border border-black font-semibold mt-5 max-[800px]:text-xs ${cart?.length === 0 ? ' cursor-not-allowed ' : ''} `} >Continue to Checkout</button>
+                            <button className={`p-3 text-sm bg-zinc-900 text-zinc-200 w-full  transition ease-in-out duration-100 border border-black font-semibold mt-5 max-[800px]:text-xs ${cart?.length || !auth?.user === 0 ? ' cursor-not-allowed ' : ''} `} >Continue to Checkout</button>
+
+                            {
+                                auth?.user && (
+                                    <div className='flex flex-col min-w-full py-2 ' >
+                                        <h2 className='text-xs font-medium mt-3' >Deliver to {auth?.user?.address} </h2>
+
+                                        <button className='p-3 text-sm  text-zinc-600 w-full  transition ease-in-out duration-100 border border-black font-semibold mt-5 max-[800px]:text-xs' > <Link to='/dashboard/user/profile' >Change address</Link> </button>
+                                    </div>
+                                )
+                            }
 
                             <div className='flex flex-col py-4' >
                                 <h3 className='text-xs font-medium ' >We accept</h3>
@@ -161,9 +174,6 @@ const CartPage = () => {
                                     <br />
                                     <br />
                                     Customers would receive an SMS/WhatsApp notifications regarding deliveries on the registered phone number
-
-
-
 
                                 </div>
                             </div>

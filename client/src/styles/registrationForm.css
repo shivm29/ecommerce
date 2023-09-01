@@ -195,12 +195,14 @@
     calc(var(--draw-duration) * 2);
 }
 
-@media (max-width: 1200px) {
-  .custom-field{
-    font-size: 12px;
+@media (max-width: 800px) {
+  .custom-field {
+    font-size: 10px; /* Adjust the font size as desired for smaller screens */
+    width: 100%;
   }
 
-  .custom-field input{
-    font-size: 12px;
+  .custom-field input {
+    width: 100%; /* Adjust the input width as desired for smaller screens */
+    font-size: 10px; /* Adjust the font size as desired for smaller screens */
   }
 }

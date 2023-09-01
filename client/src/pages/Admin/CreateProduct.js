@@ -77,7 +77,7 @@ const CreateProduct = () => {
                 animate={{ opacity: 1, y: '0%' }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 exit={{ opacity: 0 }}
-                className='mt-2 p-10 pb-0 flex w-full flex-col'  >
+                className='border-t border-l border-zinc-500  mt-2 p-16 pb-0 flex w-full flex-col'  >
                 <h1 className='mb-10 text-xl font-semibold text-zinc-600 font-Nunito' >Create a Product </h1>
                 <div className='grid min-w-full grid-cols-3 gap-4 h-fit  box-border mb-5' >
 

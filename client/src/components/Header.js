@@ -49,7 +49,7 @@ const Header = () => {
 
       <div className='flex md:w-2/5 min-[1000px]:hidden ' >
         <div className='flex w-full justify-between items-center bg-gray-100 rounded-full mr-5 px-2  py-2  md:py-3 ' >
-          <input type="text" className=' w-full bg-gray-100 focus:outline-none pl-3 rounded-full box-border text-xs ' placeholder='search here..' name="" id="" />
+          <input type="text" className=' w-full bg-gray-100 focus:outline-none pl-3 placeholder:text-zinc-500 placeholder:font-medium rounded-full box-border text-xs ' placeholder='search here..' name="" id="" />
           <i className="fas fa-search scale-90 "></i>
         </div>
 
@@ -102,7 +102,7 @@ const Header = () => {
                   <div className="dropdownoptionscontainer  ">
 
 
-                    <Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} className='font-semibold' >Dashboard</Link>
+                    <Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user/profile'}`} className='font-semibold' >Dashboard</Link>
 
 
                     <a href='#' onClick={() => setOpen(true)} >Logout</a>

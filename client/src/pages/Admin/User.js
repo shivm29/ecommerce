@@ -3,7 +3,7 @@ import AdminDashboard from './AdminDashboard'
 const User = () => {
     return (
         <AdminDashboard>
-            <h1>user page</h1>
+            <h1 >user page</h1>
         </AdminDashboard>
     )
 }
