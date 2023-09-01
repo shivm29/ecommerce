@@ -42,33 +42,38 @@ const SidebarComponent = ({ showSidebar, setShowSidebar, }) => {
 
             </div>
 
-            <div className='flex flex-col flex-1 min-w-full py-7 px-3 text-xs ' >
+            <div className='flex flex-col flex-1 min-w-full py-7 px-3 text-xs font-medium' >
                 <div>
                     <h1 className='mb-3 font-semibold' onClick={() => setShowSidebar(false)} ><Link to='/' >Account</Link></h1>
 
-                    <h1 className='mb-2 ml-2' onClick={() => setShowSidebar(false)} ><Link to='/' >Home</Link></h1>
-                    <h1 className=' mb-2 ml-2' onClick={() => setShowSidebar(false)}><Link to='/categories' >Categories</Link></h1>
+                    <h1 className='mb-2' onClick={() => setShowSidebar(false)} ><Link to='/' >Home</Link></h1>
+                    <h1 className=' mb-2' onClick={() => setShowSidebar(false)}><Link to='/categories' >Categories</Link></h1>
 
-                    <h1 className=' mb-2 ml-2' onClick={() => setShowSidebar(false)} ><Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} >Dashboard</Link></h1>
-                    <h1 className=' mb-2 ml-2 ' onClick={() => setShowSidebar(false)} ><Link to='/cart' >Cart (0)</Link></h1>
+                    <h1 className=' mb-2' onClick={() => setShowSidebar(false)} ><Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} >Dashboard</Link></h1>
+                    <h1 className=' mb-2 ' onClick={() => setShowSidebar(false)} ><Link to='/cart' >Cart (0)</Link></h1>
 
-                    {auth?.user && (
+                    {
+                        auth?.user && (
+                            <h1 className='mb-2 font-medium' onClick={() => { setOpen(true); setShowSidebar(false) }
 
-                        <h1 className=' mb-2 ml-2 font-semibold' onClick={() => { setOpen(true); setShowSidebar(false) }
-
-                        } > &nbsp;Logout</h1>
-
-                    )}
+                            } > <Link to={'/'} >Logout</Link></h1>
+                        )
+                    }
 
                     {
                         !auth?.user && (
                             <div>
-                                <h1 className='font-semibold mb-3 ml-2' onClick={() => setShowSidebar(false)} ><Link to='/login' >Login</Link></h1>
-                                <h1 className='font-semibold mb-3 ml-2' onClick={() => setShowSidebar(false)} ><Link to='/register' >Register</Link></h1>
+                                <h1 className='font-medium mb-2 ' onClick={() => setShowSidebar(false)} ><Link to='/register' >Register</Link></h1>
+                                <h1 className='font-medium mb-2 ' onClick={() => setShowSidebar(false)} ><Link to='/login' >Login</Link></h1>
+
                             </div>
                         )
                     }
                 </div>
+
+
+
+
 
             </div>
 

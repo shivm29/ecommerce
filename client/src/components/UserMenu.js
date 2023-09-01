@@ -7,18 +7,18 @@ const UserMenu = () => {
 
     return (
         <div
-            className='flex flex-col max-[1000px]:min-w-full  border mt-10 rounded-xl bg-white h-fit ml-5 text-sm font-semibold p-4 pt-5 drop-shadow-md box-border w-fit max-[1000px]:ml-0  max-[1000px]:py-0  max-[1000px]:drop-shadow-none  max-[1000px]:border-none  max-[1000px]:pb-3   max-[1000px]:pt-0  '>
+            className='flex box-border text-sm  flex-col p-10 pr-20  max-[1000px]:p-2 max-[1000px]:min-w-full '>
 
-            <div className='flex' >
-                <h1 className='font-semibold text-lg mb-4 flex justify-center  max-[1000px]:ml-2 max-[1000px]:text-sm '>User Panel</h1>
+            <div className='' >
+                <h1 className='font-semibold text-lg flex justify-end mb-6 mr-2  max-[1000px]:ml-2 max-[1000px]:text-xs '>User Panel</h1>
             </div>
 
 
-            <div className='max-[1000px]:min-w-full max-[1000px]:flex max-[1000px]:justify-center max-[1000px]:px-2 box-border  max-[1000px]:border-b  max-[1000px]:pb-2   w-40 ' >
+
+            <div className='flex flex-col max-[1000px]:flex-row max-[1000px]:justify-around  max-[1000px]:min-w-full max-[1000px]:text-xs' >
                 <NavLink
-                    to='/dashboard/user/profile'
-                    className={`border flex justify-center rounded-lg p-2 px-5 my-1  ${location.pathname === '/dashboard/user/profile' ? ' bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700  text-zinc-100 opacity-75' : 'text-zinc-500'
-                        } max-[1000px]:mx-1  max-[1000px]:p-2 max-[1000px]:px-3  max-[1000px]:font-normal max-[1000px]:items-center max-[1000px]:text-xs `}
+                    to='/dashboard/user'
+                    className={`w-fit  mb-3 font-semibold text-zinc-600 cursor-pointer ${location.pathname === '/dashboard/user' ? 'font-bold text-black underline underline-offset-8' : ''}`}
                 >
                     Profile
                 </NavLink>
@@ -26,8 +26,7 @@ const UserMenu = () => {
 
                 <NavLink
                     to='/dashboard/user/orders'
-                    className={`border flex justify-center rounded-lg p-2 px-5 my-1  ${location.pathname === '/dashboard/user/orders' ? 'opacity-70 bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700  text-slate-100' : 'text-zinc-500'
-                        } max-[1000px]:mx-1  max-[1000px]:p-0 max-[1000px]:px-2  max-[1000px]:font-normal max-[1000px]:items-center max-[1000px]:text-xs  `}
+                    className={`w-fit  mb-3 font-semibold text-zinc-600 cursor-pointer ${location.pathname === '/dashboard/user/orders' ? 'font-bold text-black underline underline-offset-8' : ''}`}
                 >
                     Orders
                 </NavLink></div>

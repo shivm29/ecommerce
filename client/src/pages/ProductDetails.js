@@ -3,6 +3,8 @@ import Layout from '../components/Layout'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useCart } from '../context/Cart'
+import { toast } from 'react-toastify'
 
 const ProductDetails = () => {
 
@@ -10,6 +12,7 @@ const ProductDetails = () => {
     const [product, setProduct] = useState({})
     const [showFit, setShowFit] = useState(true)
     const [relatedProducts, setRelatedProducts] = useState([])
+    const [cart, setCart] = useCart()
 
     useEffect(() => {
         if (params?.slug) {
@@ -42,6 +45,18 @@ const ProductDetails = () => {
         }
     };
     console.log("related : ", relatedProducts)
+
+    const handleAddToCart = (product) => {
+
+        if (cart?.filter(item => item === product).length > 0) {
+            // toast.success("Already added to cart")
+        } else {
+            setCart([...cart, product]);
+            // toast.success("Added to cart")
+            localStorage.setItem('cart', JSON.stringify([...cart, product]))
+        }
+
+    }
 
     return (
         <Layout>
@@ -84,7 +99,11 @@ const ProductDetails = () => {
                             <h3 className='mt-3 flex items-center text-sm font-semibold cursor-pointer  max-[800px]:text-xs' >Delivery and Payment
                             </h3>
 
-                            <button className='w-full flex justify-center p-4 mt-6 bg-zinc-800 hover:bg-zinc-700  transition ease-in-out duration-200   text-zinc-200 font-semibold  max-[800px]:text-xs' >
+                            <button onClick={() => {
+                                handleAddToCart(product)
+                            }
+
+                            } className='w-full flex justify-center p-4 mt-6 bg-zinc-800 hover:bg-zinc-700  transition ease-in-out duration-200   text-zinc-200 font-semibold  max-[800px]:text-xs' >
                                 <img src="/images/whitebag.png" className='h-6 mr-2  max-[800px]:h-4 ' alt="" />
                                 Add</button>
 
