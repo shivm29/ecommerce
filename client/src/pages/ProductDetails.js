@@ -77,7 +77,7 @@ const ProductDetails = () => {
                                 ' alt="" />
                             </h2>
 
-                            <h2 className='font-semibold text-2xl max-[800px]:text-base mt-3' > ₹ {product?.price} </h2>
+                            <h2 className='font-semibold text-2xl max-[800px]:text-base mt-3' > $ {product?.price} </h2>
 
                             <div className='flex flex-wrap mt-6  max-[800px]:my-6 max-[800px]:text-xs mb-16' >
 
@@ -141,7 +141,7 @@ const ProductDetails = () => {
                                         {/* product details */}
                                         <div className='flex p-2 box-border mt-2 flex-col font-semibold' >
                                             <h2 className='text-sm max-[600px]:text-xs mb-1 truncate' >{product.name}</h2>
-                                            <h2 className='text-sm mb-2 max-[600px]:text-xs ' >Rs. {product.price}</h2>
+                                            <h2 className='text-sm mb-2 max-[600px]:text-xs ' >$ {product.price}</h2>
 
                                             <h2 className=' text-xs flex justify-between items-center w-full ' >New Arrival
                                             </h2>

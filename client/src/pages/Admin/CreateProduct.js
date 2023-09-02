@@ -77,9 +77,9 @@ const CreateProduct = () => {
                 animate={{ opacity: 1, y: '0%' }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 exit={{ opacity: 0 }}
-                className='border-t border-l border-zinc-500  mt-2 p-16 pb-0 flex w-full flex-col'  >
+                className='border-t border-l border-zinc-500  mt-2 p-16 pb-0 flex w-full flex-col max-[800px]:p-4'  >
                 <h1 className='mb-10 text-xl font-semibold text-zinc-600 font-Nunito' >Create a Product </h1>
-                <div className='grid min-w-full grid-cols-3 gap-4 h-fit  box-border mb-5' >
+                <div className='grid min-w-full grid-cols-3 gap-4 h-fit  box-border mb-5 max-[800px]:grid-cols-1 ' >
 
 
 
@@ -87,7 +87,7 @@ const CreateProduct = () => {
                         type="text"
                         value={name}
                         placeholder="Write a Name"
-                        className="form-control border-b-2 border-zinc-500 w-full p-1 outline-none pl-2 font-semibold  text-sm placeholder:text-zinc-500 placeholder:font-semibold "
+                        className="form-control border-b-2 border-zinc-500 w-full p-1 outline-none pl-2 font-semibold  text-sm placeholder:text-zinc-500 placeholder:font-semibold max-[800px]:border-b max-[800px]:placeholder:text-xs max-[800px]:placeholder:font-medium max-[800px]:mb-2"
                         onChange={(e) => setName(e.target.value)}
                     />
 
@@ -95,7 +95,7 @@ const CreateProduct = () => {
                     <input
                         type="number"
                         value={price}
-                        placeholder="Write a Price" className="form-control  border-b-2 border-zinc-500 font-semibold  w-full p-1 outline-none pl-2 text-sm placeholder:text-zinc-500 placeholder:font-semibold " onChange={(e) => setPrice(e.target.value)}
+                        placeholder="Write a Price" className="form-control  border-b-2 border-zinc-500 font-semibold  w-full p-1 outline-none pl-2 text-sm placeholder:text-zinc-500 placeholder:font-semibold max-[800px]:border-b max-[800px]:placeholder:text-xs max-[800px]:placeholder:font-medium max-[800px]:mb-2" onChange={(e) => setPrice(e.target.value)}
                     />
 
 
@@ -103,10 +103,10 @@ const CreateProduct = () => {
                     <input
                         type="number"
                         value={quantity}
-                        placeholder="Write a Quantity" className="form-control font-semibold border-b-2 border-zinc-500 w-full p-1 outline-none pl-2  text-sm placeholder:text-zinc-500 placeholder:font-semibold " onChange={(e) => setQuantity(e.target.value)}
+                        placeholder="Write a Quantity" className="form-control font-semibold border-b-2 border-zinc-500 w-full p-1 outline-none pl-2  text-sm placeholder:text-zinc-500 placeholder:font-semibold max-[800px]:border-b max-[800px]:placeholder:text-xs max-[800px]:placeholder:font-medium max-[800px]:mb-2" onChange={(e) => setQuantity(e.target.value)}
                     />
 
-                    <div className='flex items-center' >
+                    <div className='flex items-center max-[800px]:mb-3' >
                         <Select
                             size='medium'
                             showSearch
@@ -114,7 +114,7 @@ const CreateProduct = () => {
                             onChange={(value) => {
                                 setCategory(value);
                             }}
-                            className='w-full font-semibold '
+                            className='w-full font-semibold  '
                             placeholder="Select a Category"
                             optionFilterProp="children"
                             filterOption={(input, option) => (option?.label ?? '').includes(input)}
@@ -153,24 +153,24 @@ const CreateProduct = () => {
                 </div>
 
 
-                <div className='grid grid-cols-2' >
+                <div className='grid grid-cols-2 max-[800px]:grid-cols-1' >
                     <textarea
                         type="text"
                         value={description}
                         placeholder="Write a Description"
-                        className="form-control border-b-2 font-semibold border-l-2  border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold "
+                        className="form-control border-b-2  border-l-2  border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold max-[800px]:border-b max-[800px]:placeholder:text-xs max-[800px]:placeholder:font-medium max-[800px]:border-l-0 max-[800px]:mt-3 max-[800px]:w-full max-[800px]:h-28"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                     <textarea
                         type="text"
                         value={fit}
                         placeholder="Explain Fit"
-                        className="form-control border-b-2 font-semibold border-r-2 border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold "
+                        className="form-control border-b-2  border-r-2 border-zinc-500 w-5/6 h-56 box-border p-2  outline-none font-normal text-sm placeholder:text-zinc-500 placeholder:font-semibold max-[800px]:border-b max-[800px]:placeholder:text-xs max-[800px]:placeholder:font-medium max-[800px]:border-r-0 max-[800px]:pt-10 max-[800px]:w-full max-[800px]:h-28"
                         onChange={(e) => setFit(e.target.value)}
                     />
                 </div>
 
-                <label className="mt-6 font-semibold border border-zinc-400 p-2 px-4 cursor-pointer w-fit text-sm  hover:scale-95 duration-100 text-zinc-500 ">
+                <label className="mt-6 font-semibold border border-zinc-400 p-2 px-4 cursor-pointer w-fit text-sm  hover:scale-95 duration-100 text-zinc-500 max-[800px]:text-xs max-[800px]:font-medium">
                     {photo ? photo.name : "Upload Photo"}
                     <input
                         type="file"
@@ -182,7 +182,7 @@ const CreateProduct = () => {
                 </label>
 
                 <div className='flex min-w-full justify-end' >
-                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mt-5 text-sm p-2 px-4 transition duration-100 hover:scale-95' onClick={handleCreateProduct}  >Submit</button>
+                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mt-5 text-sm p-2 px-4 transition duration-100 hover:scale-95 max-[800px]:text-xs max-[800px]:font-medium' onClick={handleCreateProduct}  >Submit</button>
                 </div>
 
             </motion.div>

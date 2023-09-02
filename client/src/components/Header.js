@@ -34,7 +34,7 @@ const Header = () => {
   }
 
   return (
-    <div className='font-Nunito flex min-w-full min-h-fit px-10 py-5 text-sm justify-between  box-border max-[700px]:px-5 ' >
+    <div className='sticky h-fit top-0 bg-white z-50 font-Nunito flex min-w-full min-h-fit px-10 py-5 text-sm justify-between  box-border max-[700px]:px-5 max-h-20 ' >
 
       <div className='flex justify-center items-center min-h-fit' >
 
@@ -105,7 +105,7 @@ const Header = () => {
                     <Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user/profile'}`} className='font-semibold' >Dashboard</Link>
 
 
-                    <a href='#' onClick={() => setOpen(true)} >Logout</a>
+                    <a href='#' onClick={handleConfirmLogout} >Logout</a>
 
                   </div>
                 </div>
@@ -121,47 +121,7 @@ const Header = () => {
 
       </div>
 
-      <ReactModal isOpen={open}
 
-        style={{
-          overlay: {
-            position: 'fixed',
-            margin: 'auto',
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'transparent',
-            height: '200px',
-            // height: 'fit-content',
-            width: '50%',
-            maxWidth: '500px',
-            borderRadius: '0px'
-          },
-          content: {
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            background: '#fff',
-            overflow: 'none',
-            // WebkitOverflowScrolling: 'touch',
-            border: '1px solid grey	',
-            outline: 'none',
-            padding: '20px'
-          }
-        }}
-      >
-        <motion.div
-
-          className='flex justify-between flex-col' > <h2 className='font-Nunito text-zinc-600 text-sm mb-5 font-semibold' >Are you sure you want to Logout?</h2>
-          <div className='flex justify-end' >
-            <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mb-5 text-sm p-2 px-6 transition duration-100 hover:scale-95 '
-              onClick={handleConfirmLogout}
-            >Yes</button>
-            <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 mb-5 text-sm p-2 px-6 transition duration-100 hover:scale-95 '
-              onClick={() => setOpen(false)}
-            >No</button>
-          </div></motion.div>
-      </ReactModal>
-      {/*  */}
       <SidebarComponent showSidebar={showSidebar} setShowSidebar={setShowSidebar} open={open} setOpen={open} handleConfirmLogout={handleConfirmLogout} />
     </div >
   )

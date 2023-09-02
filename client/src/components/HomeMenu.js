@@ -17,7 +17,6 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
             }
         } catch (error) {
             console.log(error)
-            // toast.error('Something went wrong in getting categories')
         }
     }
 
@@ -25,10 +24,9 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
         getAllcategories()
     }, [])
 
-    // console.log("checked", radio)
 
     return (
-        <div className='max-[900px]:hidden  p-6 px-7 pr-12 w-fit' >
+        <div className='max-[900px]:hidden  p-6 px-7 pr-12 w-fit mt-10 min-h-screen' >
             <h2 className='font-bold text-zinc-900 font-Nunito mb-5' >Shop by Product</h2>
 
             <div className='flex flex-col' >
@@ -36,7 +34,7 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
                     categories?.map((c) => {
                         return (
 
-                            <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} className={` text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : ''} hover:font-bold font-Nunito mb-2  max-[1200px]:text-xs `} >
+                            <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} className={` text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : 'font-medium'} hover:font-bold font-Nunito mb-2  max-[1200px]:text-xs `} >
                                 {c.name}
                             </Checkbox>
                         )
@@ -56,7 +54,7 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
                         Prices?.map((p) => (
                             <div key={p._id} className='mb-1' >
 
-                                <Radio className={` text-zinc-700 custom-radio ${radio === p.array ? 'underline underline-offset-8 ' : ''
+                                <Radio className={` text-zinc-700 custom-radio ${radio === p.array ? 'underline underline-offset-8 ' : 'font-medium'
                                     } hover:font-bold font-Nunito mb-2 max-[1200px]:text-xs`} value={p.array} > {p.name} </Radio>
                             </div>
                         ))

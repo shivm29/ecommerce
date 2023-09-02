@@ -51,7 +51,7 @@ const Products = () => {
                                 {/* product details */}
                                 <div className='flex p-2 box-border mt-2 flex-col font-semibold' >
                                     <h2 className='text-sm max-[600px]:text-xs mb-1 truncate' >{product.name}</h2>
-                                    <h2 className='text-sm mb-2 max-[600px]:text-xs ' >Rs. {product.price}</h2>
+                                    <h2 className='text-sm mb-2 max-[600px]:text-xs ' >$ {product.price}</h2>
                                     <h2 className=' text-xs ' >New Arrival</h2>
                                 </div>
                             </div>

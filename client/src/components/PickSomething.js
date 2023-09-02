@@ -16,19 +16,19 @@ const PickSomething = () => {
 
     return (
 
-        <div className={`flex justify-between box-border px-10 text-sm   text-white bg-gradient-to-r from-purple-500 to-pink-500 py-2 ease-in opacity-70`} >
-            <div className={`slider-content ${showContent1 ? '' : 'hidden'}`} id="slider-content-1">
+        <div className={`max-[800px]:hidden flex justify-between box-border py-2 pr-3 mt-2 text-sm  max-[800px]:text-xs`} >
+            <div className={`slider-content font-medium ${showContent1 ? '' : 'hidden'}`} id="slider-content-1">
                 Pick something nice for your partner, it's the least you can do!
             </div>
-            <div className={`slider-content ${showContent1 ? 'hidden' : ''} `} id="slider-content-2">
+            <div className={`slider-content font-medium ${showContent1 ? 'hidden' : ''} `} id="slider-content-2">
                 Self gifting is worth it too !  &nbsp; ; )
             </div>
             <div className="arrow-container">
-                <span className={`arrow-left ${showContent1 ? 'hidden' : ''} cursor-pointer`} onClick={slideToLeft}>
-                    mingle ?
+                <span className={`arrow-left font-semibold ${showContent1 ? 'hidden' : ''} cursor-pointer`} onClick={slideToLeft}>
+                    Mingle ?
                 </span>
-                <span className={`arrow-right ${showContent1 ? '' : 'hidden'} cursor-pointer`} onClick={slideToRight}>
-                    single ?
+                <span className={` arrow-right font-semibold ${showContent1 ? '' : 'hidden'} cursor-pointer`} onClick={slideToRight}>
+                    Single ?
                 </span>
             </div>
         </div>

@@ -4,13 +4,33 @@ import { useAuth } from '../context/Auth'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import ReactModal from 'react-modal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useCart } from '../context/Cart'
+import axios from 'axios'
 
 const SidebarComponent = ({ showSidebar, setShowSidebar, }) => {
 
     const [auth, setAuth] = useAuth()
     const [open, setOpen] = useState(false)
+    const [cart, setCart] = useCart()
+
+    const [categories, setCategories] = useState([])
+    // get all categories
+    const getAllcategories = async () => {
+        try {
+            const { data } = await axios.get('/api/v1/category/get-category')
+            if (data.success) {
+                setCategories(data.category)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getAllcategories()
+    }, [])
 
     const navigate = useNavigate()
 
@@ -28,7 +48,7 @@ const SidebarComponent = ({ showSidebar, setShowSidebar, }) => {
     return (
         <div
 
-            className={`flex flex-col box-border p-6 items-start min-h-full bg-white drop-shadow-xl w-72 z-50 absolute top-0 right-0  ${showSidebar ? '' : 'hidden'} rounded-md overflow-x-hidden `}>
+            className={`flex flex-col box-border p-6 items-start min-h-full bg-white drop-shadow-xl  w-60 z-50 absolute top-0 right-0  ${showSidebar ? '' : 'hidden'} rounded-md overflow-x-hidden `}>
             <div className='flex min-w-full justify-between ' >
 
                 <button className='place-self-end ' onClick={() => setShowSidebar(false)} >
@@ -44,85 +64,52 @@ const SidebarComponent = ({ showSidebar, setShowSidebar, }) => {
 
             <div className='flex flex-col flex-1 min-w-full py-7 px-3 text-xs font-medium' >
                 <div>
-                    <h1 className='mb-3 font-semibold' onClick={() => setShowSidebar(false)} ><Link to='/' >Account</Link></h1>
+                    <h1 className='mb-4 font-semibold text-sm text-zinc-700' onClick={() => setShowSidebar(false)} ><Link to='/' >Account</Link></h1>
+                    <div className='pl-2' >
 
-                    <h1 className='mb-2' onClick={() => setShowSidebar(false)} ><Link to='/' >Home</Link></h1>
-                    <h1 className=' mb-2' onClick={() => setShowSidebar(false)}><Link to='/categories' >Categories</Link></h1>
+                        <h1 className='mb-3 ' onClick={() => setShowSidebar(false)} ><Link to='/' >Home</Link></h1>
+                        <h1 className=' mb-3' onClick={() => setShowSidebar(false)}><Link to='/categories' >Categories</Link></h1>
 
-                    <h1 className=' mb-2' onClick={() => setShowSidebar(false)} ><Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} >Dashboard</Link></h1>
-                    <h1 className=' mb-2 ' onClick={() => setShowSidebar(false)} ><Link to='/cart' >Cart (0)</Link></h1>
+                        <h1 className=' mb-3' onClick={() => setShowSidebar(false)} ><Link to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} >Dashboard</Link></h1>
+                        <h1 className=' mb-3 ' onClick={() => setShowSidebar(false)} ><Link to='/cart' >Cart ({cart?.length})</Link></h1>
 
-                    {
-                        auth?.user && (
-                            <h1 className='mb-2 font-medium' onClick={() => { setOpen(true); setShowSidebar(false) }
+                        {
+                            auth?.user && (
+                                <h1 className='mb-2 font-medium' onClick={() => { setOpen(true); setShowSidebar(false) }
 
-                            } > <Link to={'/'} >Logout</Link></h1>
-                        )
-                    }
+                                } > < button onClick={handleConfirmLogout} >Logout</button> </h1>
+                            )
+                        }
+                        {
+                            !auth?.user && (
+                                <div>
+                                    <h1 className='font-medium mb-3 ' onClick={() => setShowSidebar(false)} ><Link to='/register' >Register</Link></h1>
+                                    <h1 className='font-medium mb-2 ' onClick={() => setShowSidebar(false)} ><Link to='/login' >Login</Link></h1>
 
-                    {
-                        !auth?.user && (
-                            <div>
-                                <h1 className='font-medium mb-2 ' onClick={() => setShowSidebar(false)} ><Link to='/register' >Register</Link></h1>
-                                <h1 className='font-medium mb-2 ' onClick={() => setShowSidebar(false)} ><Link to='/login' >Login</Link></h1>
+                                </div>
+                            )
+                        }
 
-                            </div>
-                        )
-                    }
+                    </div>
+
+                    <h3 className='mt-7 text-sm text-zinc-700 font-semibold mb-4' >Top Categories</h3>
+                    <div className='flex flex-col pl-2' >
+                        {
+                            categories?.map((c) => {
+                                return (
+                                    <Link to={`/category/${c.slug}`}  ><h1 className='mb-3'>{c.name}</h1></Link>
+                                )
+                            })
+                        }
+                    </div>
+
                 </div>
-
-
 
 
 
             </div>
 
-            <ReactModal isOpen={open}
 
-                style={{
-                    overlay: {
-                        position: 'absolute',
-                        margin: 'auto',
-                        right: 0,
-                        bottom: 0,
-                        // backgroundColor: 'yellow',
-                        height: '200px',
-                        // height: 'fit-content',
-                        width: '100%',
-                        maxWidth: '500px',
-                        zIndex: '9999999'
-                    },
-                    content: {
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        border: '1px solid #ccc',
-                        background: 'transparent',
-                        overflow: 'none',
-                        // WebkitOverflowScrolling: 'touch',
-                        borderRadius: '10px',
-                        border: '1px solid #E0E0E0	',
-                        outline: 'none',
-                        padding: '20px',
-                        paddingBottom: '0px'
-                    }
-                }}
-            >
-                <motion.div
-                    initial={{ opacity: 0.5, y: '20%' }}
-                    animate={{ opacity: 1, y: '0%' }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                    exit={{ opacity: 0 }}
-                    className='flex justify-between flex-col' > <h2 className='font-Nunito text-zinc-600 text-xs mb-5' >Are you sure you want to Logout?</h2>
-                    <div className='flex justify-end' >
-                        <button className='font-Nunito text-zinc-100 text-xs  p-1 w-20 mr-2 rounded-lg bg-gradient-to-r from-pink-500 via-fuchsia-600 to-fuchsia-700 ... hover:scale-105 ease-in-out duration-300 opacity-70 '
-                            onClick={handleConfirmLogout}
-                        >Yes</button>
-                        <button className='font-Nunito text-zinc-700 text-xs  p-1 w-20 border-2 border-zinc-300  rounded-lg hover:scale-105 ease-in-out duration-300 '
-                            onClick={() => setOpen(false)}
-                        >No</button>
-                    </div></motion.div>
-            </ReactModal>
         </div>
     )
 }

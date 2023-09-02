@@ -108,23 +108,23 @@ const CreateCategory = () => {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 exit={{ opacity: 0 }}
 
-                className='border-t border-l border-zinc-500 box-border p-5 pt-10 min-h-screen min-w-full flex flex-col justify-start items-center' >
+                className='border-t border-l border-zinc-500 box-border p-5 pt-10 min-h-screen min-w-full flex flex-col justify-start items-center max-[800px]:p-3' >
 
 
 
                 <CategoryForm name={name} setName={setName} handleSubmit={handleSubmit} />
 
                 <div className='min-w-full h-fit mt-6 flex flex-col justify-center items-center  ' >
-                    <div className='flex w-2/3 max-[1000px]:w-full h-fit justify-start items-center border-b-2 border-zinc-400 box-border p-2 pb-4 shadow-sm mb-3 ' >
-                        <div className='flex h-full flex-1 font-semibold text-zinc-500 justify-center border-r-2 border-zinc-400 ' >Categories</div>
-                        <div className='flex h-full flex-1 font-semibold text-zinc-500 justify-center ' >Actions</div>
+                    <div className='flex w-2/3 max-[1000px]:w-full h-fit justify-start items-center border-b border-zinc-400 box-border p-2 pb-4 shadow-sm mb-3' >
+                        <div className='flex h-full flex-1 font-semibold text-zinc-500 justify-center border-r-2 border-zinc-400 max-[800px]:text-sm max-[800px]:font-medium ' >Categories</div>
+                        <div className='flex h-full flex-1 font-semibold text-zinc-500 justify-center max-[800px]:text-sm max-[800px]:font-medium ' >Actions</div>
                     </div>
 
                     <div className='flex flex-col min-w-full min-h-fit justify-center items-center mt-2 p-2 box-border font-semibold ' >
                         {
                             categories?.map((c, key) => {
                                 return (
-                                    <div key={key} className='flex w-2/3 max-[1000px]:w-full h-fit justify-between items-center box-border text-sm max-[1000px]:text-xs mb-3   p-1 px-4  border-zinc-300 ' >
+                                    <div key={key} className='flex w-2/3 max-[1000px]:w-full h-fit justify-between items-center box-border text-sm max-[1000px]:text-xs mb-3   p-1 px-4  border-zinc-300 max-[800px]:px-0' >
 
                                         {
                                             editedCategory === c.name ? (
@@ -142,17 +142,17 @@ const CreateCategory = () => {
 
                                         {
                                             editedCategory === c.name ? (
-                                                <div className='flex h-full flex-1 justify-end box-border pr-2 ' >
-                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => handleUpdate(c)}  >Update</button>
+                                                <div className='flex h-full flex-1 justify-end box-border pr-2 max-[800px]:pr-0' >
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm max-[800px]:text-xs ' onClick={() => handleUpdate(c)}  >Update</button>
 
-                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => setEditedCategory(null)} >Cancel</button>
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm max-[800px]:text-xs' onClick={() => setEditedCategory(null)} >Cancel</button>
 
                                                 </div>
                                             ) : (
-                                                <div className='flex h-full flex-1 justify-end box-border pr-2' >
+                                                <div className='flex h-full flex-1 justify-end box-border pr-2 max-[800px]:pr-0' >
 
-                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => handleDelete(c)}  >Delete</button>
-                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-500 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm' onClick={() => handleEdit(c)}  >Edit</button>
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-700 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm max-[800px]:text-xs max-[800px]:font-medium' onClick={() => handleDelete(c)}  >Delete</button>
+                                                    <button className='mr-5 font-semibold cursor-pointer border border-zinc-400 text-zinc-700 text-sm p-1 px-4 transition duration-100 hover:scale-95 font-sm max-[800px]:text-xs max-[800px]:mr-0 max-[800px]:font-medium' onClick={() => handleEdit(c)}  >Edit</button>
                                                 </div>
                                             )
                                         }

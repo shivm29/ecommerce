@@ -46,7 +46,6 @@ const UpdateProduct = () => {
             productData.append("description", description);
             productData.append("price", price);
             productData.append("quantity", quantity);
-            // productData.append("photo", photo);
             productData.append("category", category);
             productData.append("shipping", shipping);
             productData.append("fit", fit)
@@ -74,14 +73,14 @@ const UpdateProduct = () => {
 
             if (data?.success) {
                 console.log(data)
-                setID(data?.product[0]?._id)
-                setName(data?.product[0]?.name)
-                setPrice(data?.product[0]?.price)
-                setCategory(data?.product[0]?.category._id)
-                setShipping(data?.product[0]?.shipping)
-                setQuantity(data?.product[0]?.quantity)
-                setDescription(data?.product[0]?.description)
-                setFit(data?.product[0]?.fit)
+                setID(data?.product?._id)
+                setName(data?.product?.name)
+                setPrice(data?.product?.price)
+                setCategory(data?.product?.category._id)
+                setShipping(data?.product?.shipping)
+                setQuantity(data?.product?.quantity)
+                setDescription(data?.product?.description)
+                setFit(data?.product?.fit)
 
             } else {
                 toast.error(data.message)

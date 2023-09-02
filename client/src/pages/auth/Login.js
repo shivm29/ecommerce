@@ -68,7 +68,7 @@ const Login = () => {
                     animate={{ opacity: 1, y: '0%' }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     exit={{ opacity: 0 }}
-                    className='flex min-h-screen flex-1 items-start  pt-32 justify-center box-border pb-10 max-[1200px]:pb-1 max-[1200px]:px-5 max-[1200px]:pt-20' >
+                    className='flex min-h-screen flex-1 items-start  pt-32 justify-center box-border pb-10 max-[1200px]:pb-1 max-[1200px]:px-5 max-[1200px]:pt-20 max-[800px]:px-10' >
                     <div className='flex justify-center flex-col' >
                         <h1 className='text-6xl font-extrabold mb-5 max-[1200px]:text-3xl max-[1200px]:mb-4' >Welcome Back !</h1>
                         <h2 className='font-semibold ml-1 mb-5 max-[1200px]:text-sm max-[1200px]:mb-5 ' >Welcome to ShopCart Login page. We are glad to see you back !</h2>
@@ -95,12 +95,12 @@ const Login = () => {
                                 </div>
 
                                 <div className='  max-[1200px]:flex min-w-full justify-end max-[1200px]:mt-16' >
-                                    <button type='submit' className='p-3 px-6 my-10 bg-zinc-700 text-white font-semibold hover:bg-zinc-600 transform duration-100 ease-in-out '  >Login</button>
+                                    <button type='submit' className='p-3 px-6 my-10 bg-zinc-700 text-white font-semibold hover:bg-zinc-600 transform duration-100 ease-in-out max-[800px]:text-xs max-[800px]:font-medium '  >Login</button>
                                 </div>
                             </div>
                         </form>
 
-                        <h3 className='text-zinc-500 ml-2 mb-4  text-sm font-semibold max-[1200px]:text-xs ' >New to ShopCart? <span className='text-zinc-800 cursor-pointer font-semibold text-sm max-[1200px]:text-xs' ><Link to='/register' > Create a new account </Link></span>   </h3>
+                        <h3 className='text-zinc-500 ml-2 mb-4  text-sm font-semibold max-[1200px]:text-xs max-[800px]:font-medium' >New to ShopCart? <span className='text-zinc-800 cursor-pointer font-semibold text-sm max-[1200px]:text-xs' ><Link to='/register' > Create a new account </Link></span>   </h3>
 
                         <span className='text-zinc-800 cursor-pointer  font-semibold ml-2 text-sm max-[1200px]:text-xs place-self-end max-[1200px]:place-self-start  ' ><Link to='/forgot-password' > Forgot password ? </Link></span>
                     </div>

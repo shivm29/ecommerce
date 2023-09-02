@@ -4,13 +4,18 @@ import { useCart } from '../context/Cart'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/Auth'
 import TruncatedText from '../components/TruncatedText'
+import DropIn from 'braintree-web-drop-in-react'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const CartPage = () => {
     const [auth] = useAuth()
     const [cart, setCart] = useCart()
     const [total, setTotal] = useState(0)
     const navigate = useNavigate()
-
+    const [clientToken, setClientToken] = useState('')
+    const [instance, setInstance] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (cart.length > 0) {
@@ -43,6 +48,49 @@ const CartPage = () => {
             console.log(error)
         }
     }
+
+    const getToken = async () => {
+        try {
+            const { data } = await axios.get('/api/v1/product/braintree/token')
+            setClientToken(data?.clientToken)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    const handlePayment = async () => {
+
+        setLoading(true)
+        localStorage.removeItem("cart")
+        setCart([])
+        navigate('/dashboard/user/orders')
+        toast.success("Payment completed Successfully")
+        setLoading(false)
+    }
+    // const handlePayment = async () => {
+    //     try {
+    //         setLoading(true)
+    //         const { nonce } = await instance.requestPaymentMethod()
+    //         const { data } = await axios.post(`/api/v1/product/braintree/payment`, {
+    //             nonce, cart
+    //         })
+    //         setLoading(false)
+    //         localStorage.removeItem("cart")
+    //         setCart([])
+    //         navigate('/dashboard/user/orders')
+    //         toast.success("Payment completed Successfully")
+    //     } catch (error) {
+    //         console.log(error)
+    //         setLoading(false)
+    //     }
+    // }
+
+    useEffect(() => {
+        getToken()
+    }, [auth?.token])
+
+
 
     console.log("cart, ", cart)
     return (
@@ -138,7 +186,7 @@ const CartPage = () => {
 
                             </div>
 
-                            <button className={`p-3 text-sm bg-zinc-900 text-zinc-200 w-full  transition ease-in-out duration-100 border border-black font-semibold mt-5 max-[800px]:text-xs ${cart?.length || !auth?.user === 0 ? ' cursor-not-allowed ' : ''} `} >Continue to Checkout</button>
+                            {/* <button className={`p-3 text-sm bg-zinc-900 text-zinc-200 w-full  transition ease-in-out duration-100 border border-black font-semibold mt-5 max-[800px]:text-xs ${cart?.length || !auth?.user === 0 ? ' cursor-not-allowed ' : ''} `} >Continue to Checkout</button> */}
 
                             {
                                 auth?.user && (
@@ -150,19 +198,60 @@ const CartPage = () => {
                                 )
                             }
 
+
                             <div className='flex flex-col py-4' >
-                                <h3 className='text-xs font-medium ' >We accept</h3>
-                                <div className='flex flex-wrap w-2/3 text-xs py-2 font-semibold items-center max-[800px]:font-medium
+
+
+                                {
+                                    !auth?.user && (
+                                        <>
+                                            <h3 className='text-xs font-medium ' >We accept</h3>
+                                            <div className='flex flex-wrap w-2/3 text-xs py-2 font-semibold items-center max-[800px]:font-medium
                                 ' >
-                                    <span className='mb-2 mr-2'>Cash on Delivery</span>
+                                                <span className='mb-2 mr-2'>Cash on Delivery</span>
 
-                                    <span><img className='h-9 mr-4 mb-2' src="/images/mastercard.png" alt="" /></span>
-                                    <span><img className='h-9 mr-4 mb-2' src="/images/visa.png" alt="" /></span>
-                                    <span><img className='h-9 mr-4 mb-2' src="/images/rupay.png" alt="" /></span>
+                                                <span><img className='h-9 mr-4 mb-2' src="/images/mastercard.png" alt="" /></span>
+                                                <span><img className='h-9 mr-4 mb-2' src="/images/visa.png" alt="" /></span>
+                                                <span><img className='h-9 mr-4 mb-2' src="/images/rupay.png" alt="" /></span>
 
-                                    <span className='mb-2 mr-4 font-bold'>EMI</span>
+                                                <span className='mb-2 mr-4 font-bold'>EMI</span>
 
-                                    <span><img className='h-3 mr-4 mb-2' src="/images/UPI.png" alt="" /></span>
+                                                <span><img className='h-3 mr-4 mb-2' src="/images/UPI.png" alt="" /></span>
+
+                                            </div>
+
+                                        </>
+                                    )
+                                }
+
+
+
+                                <div className='flex min-w-full flex-col' >
+                                    {auth?.user && clientToken && cart.length > 0 && (
+                                        <>
+                                            <DropIn
+                                                className='font-Nunito'
+                                                options={{
+                                                    authorization: clientToken,
+
+                                                }}
+
+                                                onInstance={(instance) => setInstance(instance)}
+                                            />
+
+
+                                        </>
+                                    )}
+
+
+                                    <button
+                                        // disabled={loading || !instance || !auth?.user?.address}
+                                        disabled
+                                        onClick={handlePayment} className={`p-3 text-sm bg-zinc-900 text-zinc-200 w-full  transition ease-in-out duration-100 border border-black font-semibold mt-5 max-[800px]:text-xs cursor-not-allowed`} >
+                                        {loading ? 'Loading...' : 'Make Payment'}
+
+                                    </button>
+
 
                                 </div>
 

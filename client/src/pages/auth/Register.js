@@ -61,7 +61,7 @@ const Register = () => {
                     animate={{ opacity: 1, y: '0%' }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     exit={{ opacity: 0 }}
-                    className='flex min-h-screen  flex-1  pt-15 justify-center items-start box-border  pt-28 max-[1200px]:pt-10 max-[1200px]:pb-1 max-[1200px]:px-5 ' >
+                    className='flex min-h-screen  flex-1  pt-15 justify-center items-start box-border  pt-28 max-[1200px]:pt-10 max-[1200px]:pb-1 max-[1200px]:px-5 max-[800px]:px-10 ' >
                     <div className='flex justify-center flex-col' >
                         <h1 className='text-6xl font-extrabold mb-5 max-[1200px]:text-3xl max-[1200px]:mb-3' >Create new account</h1>
                         <h2 className='font-semibold ml-1 mb-10 max-[1200px]:text-sm max-[1200px]:mb-5' > Welcome to ShopCart Signup page</h2>
@@ -111,13 +111,13 @@ const Register = () => {
                                         <span className="placeholder">Address</span>
                                     </label>
                                 </div>
-                                <div className='  max-[1200px]:flex min-w-full justify-end max-[1200px]:mt-16' >
-                                    <button type='submit' className='p-3 px-6 my-10 bg-zinc-700 text-white font-semibold hover:bg-zinc-600 transform duration-100 ease-in-out '  >Register Now</button>
+                                <div className='  max-[1200px]:flex min-w-full justify-end max-[800px]:justify-start max-[800px]:ml-1 max-[1200px]:mt-16' >
+                                    <button type='submit' className='p-3 px-6 my-10 bg-zinc-700 text-white font-semibold hover:bg-zinc-600 transform duration-100 ease-in-out max-[800px]:text-xs max-[800px]:font-medium max-[800px]:mt-0 max-[800px]:mb-20'  >Register Now</button>
                                 </div>
                             </div>
                         </form>
 
-                        <h3 className='text-zinc-500 ml-2 mb-10 text-sm font-semibold max-[1200px]:text-xs' >Already have an account? <span className='text-pink-800 cursor-pointer  font-bold' ><Link to='/login' > Login </Link></span></h3>
+                        <h3 className='text-zinc-500 ml-2 mb-10 text-sm font-semibold max-[1200px]:text-xs max-[800px]:font-medium' >Already have an account? <span className='text-pink-800 cursor-pointer  font-bold' ><Link to='/login' > Login </Link></span></h3>
                     </div>
                 </motion.div>
             </motion.div>

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
-import PickSomething from '../components/PickSomething'
-import { useAuth } from '../context/Auth'
 import { motion } from 'framer-motion'
 import HomeMenu from '../components/HomeMenu'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Checkbox from 'antd/es/checkbox/Checkbox'
 import { Radio } from 'antd'
-import { Prices } from '../components/Prices'
 import '../styles/HomeMEnu.css'
+import '../styles/Homepage.css'
+import { Prices } from '../components/Prices'
+import PickSomething from '../components/PickSomething'
 
 const HomePage = () => {
 
@@ -20,6 +20,8 @@ const HomePage = () => {
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(0)
+  const [showFilters, setShowFilters] = useState(false)
+  const [showPrices, setShowPrices] = useState(false)
 
   // load more
 
@@ -146,61 +148,80 @@ const HomePage = () => {
         exit={{ opacity: 0 }} >
 
         <div className='flex w-full min-h-screen' >
-
-
           <HomeMenu checked={checked} radio={radio} setRadio={setRadio} setChecked={setChecked} handleFilter={handleFilter} />
+          {/* Products */}
 
+          <div className='flex flex-col flex-1 ' >
 
-          {/* <div className='p-6 px-7 pr-12   max-[800px]:hidden max-[1200px]:text-sm ' >
-            <h2 className='font-bold text-zinc-900 font-Nunito mb-5' >Shop by Product</h2>
-
-            <div className='flex flex-col' >
-              {
-                categories?.map((c) => {
-                  return (
-
-                    <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} className={`font-semibold text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : ''} hover:font-bold font-Nunito mb-2 max-[1200px]:text-xs `} >
-                      {c.name}
-                    </Checkbox>
-                  )
-                })
-              }
+            <div className='flex flex-col h-36 w-full  justify-between' id='background' >
+              <h1 className='flex p-4 h-1/2 items-end text-5xl font-bold ml-10 max-[800px]:text-5xl max-[800px]:pb-10  ' >ShopCart 50% Sale!</h1>
+              <div className='flex w-full justify-end' >
+                <button className='p-3 text-sm font-bold max-[800px]:font-semibold mr-10 mb-10 bg-zinc-800 text-zinc-100 max-[800px]:text-xs' >Shop Now</button>
+              </div>
             </div>
 
-            <h2 className='font-bold text-zinc-900 font-Nunito mt-7 mb-5 ' >Trending Now</h2>
-            <h3 className='text-zinc-700 text-sm mb-1 font-semibold cursor-pointer hover:font-semibold  max-[1200px]:text-xs' >Trending Now</h3>
+            <div className='min-[800px]:hidden w-full px-2 py-4 relative flex ' >
+
+              <button className="flex items-center text-xs p-2 pb-0 font-medium tracking-widest text-zinc-950 " onClick={() => setShowFilters(!showFilters)}
+
+              > CATEGORY<img src="/images/down-arrow.png" className='h-3 ml-2' alt="" /> </button>
+              <button className="flex items-center text-xs p-2 pb-0 font-medium tracking-widest text-zinc-950 " onClick={() => setShowPrices(!showPrices)}
+
+              > PRICE<img src="/images/down-arrow.png" className='h-3 ml-2' alt="" /> </button>
+
+              <div className={` ${showFilters ? 'block' : 'hidden'} bg-white  w-48  text-sm ml-2 font-medium py-2 top-10  absolute dropdown-content overflow-auto pb-6 filter-dropdown ${showFilters ? 'open' : ''}`} >
+                <h2 className='mb-3 text-xs bg-slate-100 pl-4 py-2.5' > By Category</h2>
+                <div className='flex flex-col' >
+                  {
+                    categories?.map((c) => {
+                      return (
+
+                        <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)} onClick={() => setShowFilters(false)} className={`pl-2 text-zinc-700 custom-checkbox ${checked.includes(c._id) ? 'underline underline-offset-8 font-semibold' : 'font-medium'} hover:font-bold font-Nunito mb-3  max-[1200px]:text-xs `} >
+                          {c.name}
+                        </Checkbox>
+                      )
+                    })
+                  }
+                </div>
 
 
-            <h2 className='font-bold text-zinc-900 font-Nunito mt-7 mb-5' >Shop by Price</h2>
 
-            <div>
-              <Radio.Group className='flex flex-col custom-radio-group' onChange={e => setRadio(e.target.value)} >
-                {
-                  Prices?.map((p) => (
-                    <div key={p._id} className='mb-1' >
+              </div>
+              <div className={` ${showPrices ? 'block' : 'hidden'} bg-white  w-48  text-sm ml-28 font-medium py-2 top-10  absolute dropdown-content overflow-auto pb-6 filter-dropdown ${showPrices ? 'open' : ''}`} >
+                <h2 className='mb-3 text-xs bg-slate-100 pl-4 py-2.5' > By Prices</h2>
+                <div className='flex flex-col' >
+                  {
+                    Prices?.map((p) => {
+                      return (
 
-                      <Radio className={`font-semibold text-zinc-700 custom-radio ${radio === p.array ? 'underline underline-offset-8 ' : ''
-                        } hover:font-bold font-Nunito mb-2  max-[1200px]:text-xs `} value={p.array} > {p.name} </Radio>
-                    </div>
-                  ))
-                }
-              </Radio.Group></div>
-            <button className='font-semibold font-Nunito text-sm mt-3' onClick={() => window.location.reload()} >Reset Filters</button>
+                        <Radio className={` text-zinc-700 custom-radio ${radio === p.array ? 'underline underline-offset-8 ' : 'font-medium'
+                          } hover:font-bold font-Nunito mb-2 max-[1200px]:text-xs`} value={p.array} > {p.name} </Radio>
+                      )
+                    })
+                  }
+                </div>
 
-          </div> */}
+              </div>
 
-          {/* Products */}
-          <div className='flex flex-1 ' >
+
+
+
+              <button className="flex items-center text-xs p-2 pb-0 font-medium  tracking-widest text-zinc-950 "
+
+              > SORT<img src="/images/down-arrow.png" className='h-3 ml-2' alt="" /> </button>
+
+            </div>
+            <PickSomething />
             <motion.div
               initial={{ opacity: 0.5, y: '10%' }}
               animate={{ opacity: 1, y: '0%' }}
               transition={{ duration: 1, ease: 'easeOut' }}
               exit={{ opacity: 0 }}
-              className='grid p-5 box-border min-w-full h-fit grid-cols-4 gap-2 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2  ' >
+              className='grid mt-3 box-border min-w-full h-fit grid-cols-4 gap-2 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2 max-[800px]:p-2 max-[800px]:gap-1 ' >
               {
                 products?.map((product) => {
                   return (
-                    <div key={product._id} className='flex flex-col min-w-full  duration-100 mb-3' >
+                    <div key={product._id} className='text-zinc-800 flex flex-col min-w-full  duration-100 mb-3' >
                       {/* product photo */}
                       <Link
                         to={`/product/${product.slug}`}
@@ -208,9 +229,9 @@ const HomePage = () => {
                         <img src={`/api/v1/product/product-photo/${product._id}`} alt="" />
                       </Link>
                       {/* product details */}
-                      <div className='flex p-2 box-border mt-2 flex-col font-semibold' >
+                      <div className='flex p-2 box-border mt-2 flex-col text-zinc-950 ' >
                         <h2 className='text-sm max-[600px]:text-xs mb-1 truncate' >{product.name}</h2>
-                        <h2 className='text-sm mb-2 max-[600px]:text-xs ' >Rs. {product.price}</h2>
+                        <h2 className='text-sm mb-2 max-[600px]:text-xs ' >$ {product.price}</h2>
 
                         <h2 className=' text-xs flex justify-between items-center w-full ' >New Arrival
                         </h2>
