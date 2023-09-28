@@ -68,23 +68,7 @@ const CartPage = () => {
         toast.success("Payment completed Successfully")
         setLoading(false)
     }
-    // const handlePayment = async () => {
-    //     try {
-    //         setLoading(true)
-    //         const { nonce } = await instance.requestPaymentMethod()
-    //         const { data } = await axios.post(`/api/v1/product/braintree/payment`, {
-    //             nonce, cart
-    //         })
-    //         setLoading(false)
-    //         localStorage.removeItem("cart")
-    //         setCart([])
-    //         navigate('/dashboard/user/orders')
-    //         toast.success("Payment completed Successfully")
-    //     } catch (error) {
-    //         console.log(error)
-    //         setLoading(false)
-    //     }
-    // }
+  
 
     useEffect(() => {
         getToken()
@@ -122,7 +106,7 @@ const CartPage = () => {
 
                                                         <div>
                                                             <h2 className='font-semibold max-[800px]:mb-2' > {c.name} </h2>
-                                                            <h2 className='font-semibold ' > Rs. {c.price} </h2>
+                                                            <h2 className='font-semibold ' > $ {c.price} </h2>
                                                             <h2 className='font-medium mt-3 max-[800px]:text-xs ' >{c.category.name} </h2>
 
                                                         </div>
@@ -173,15 +157,15 @@ const CartPage = () => {
                                 {
                                     cart?.length > 0 && (
                                         <div>
-                                            <h1 className='flex justify-between w-full text-sm font-medium text-zinc-500 max-[800px]:text-xs' >Order Value <span className='text-zinc-800 font-semibold' >Rs. {total}.00 </span>
+                                            <h1 className='flex justify-between w-full text-sm font-medium text-zinc-500 max-[800px]:text-xs' >Order Value <span className='text-zinc-800 font-semibold' >$ {total}.00 </span>
                                             </h1>
-                                            <h1 className='flex justify-between w-full text-sm font-medium text-zinc-500 mt-2 border-b pb-3 border-zinc-600 max-[800px]:text-xs' >Delivery <span className='text-zinc-800 font-semibold' >Rs. 149.00</span>
+                                            <h1 className='flex justify-between w-full text-sm font-medium text-zinc-500 mt-2 border-b pb-3 border-zinc-600 max-[800px]:text-xs' >Delivery <span className='text-zinc-800 font-semibold' >$ 4</span>
                                             </h1>
                                         </div>
                                     )
                                 }
 
-                                <h1 className='flex mt-3 justify-between w-full text-md font-semibold text-zinc-800 max-[800px]:text-sm' >Total <span className='text-zinc-800 font-semibold' >Rs. {cart.length > 0 ? total + 149 + '.00' : '0.00'} </span>
+                                <h1 className='flex mt-3 justify-between w-full text-md font-semibold text-zinc-800 max-[800px]:text-sm' >Total <span className='text-zinc-800 font-semibold' >$ {cart.length > 0 ? total + 4 + '.00' : '0.00'} </span>
                                 </h1>
 
                             </div>

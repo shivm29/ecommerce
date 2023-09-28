@@ -72,7 +72,7 @@ export const getProductController = async (req, res) => {
         // .select('-photo) ensures that 'photo' field is excluded from the fetched data (we dont want to fetch photo during initial load | to avoid loading time)
         // limit(12) and sort() gives 12 products in descending order of their created dates
         // populate('category') add whole data of this particular id of category
-        const products = await productModel.find({}).populate('category').select('-photo').limit(12).sort({ createdAt: -1 })
+        const products = await productModel.find({}).populate('category').select('-photo').limit(15).sort({ createdAt: -1 })
         res.status(200).send({
             success: true,
             message: 'All products fetched',
@@ -247,7 +247,7 @@ export const productCountController = async (req, res) => {
 // product list base on page
 export const productListController = async (req, res) => {
     try {
-        const perPage = 12;
+        const perPage = 15;
         const page = req.params.page ? req.params.page : 1;
         const products = await productModel
             .find({})

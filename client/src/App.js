@@ -24,6 +24,7 @@ import ProductDetails from './pages/ProductDetails';
 import CategoriesPage from './pages/CategoriesPage';
 import CategoryProduct from './pages/CategoryProduct';
 import CartPage from './pages/CartPage'
+
 function App() {
 
   return (

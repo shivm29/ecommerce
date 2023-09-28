@@ -7,6 +7,9 @@ import Layout from '../../components/Layout'
 import { motion } from 'framer-motion'
 import { useAuth } from '../../context/Auth'
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 const Login = () => {
 
     const [email, setEmail] = useState('');

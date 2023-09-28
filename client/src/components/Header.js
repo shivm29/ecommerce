@@ -40,7 +40,7 @@ const Header = () => {
 
 
         <h3 className='text-xl font-extrabold	mx-2 max-[700px]:font-bold max-[700px]:text-sm max-[700px]:mx-1 '>
-          The Vesh</h3>
+          Vesh</h3>
 
 
       </div>

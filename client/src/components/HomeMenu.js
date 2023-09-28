@@ -26,7 +26,7 @@ const HomeMenu = ({ checked, handleFilter, setRadio, radio }) => {
 
 
     return (
-        <div className='max-[900px]:hidden  p-6 px-7 pr-12 w-fit mt-10 min-h-screen' >
+        <div className='max-[900px]:hidden  p-6 px-7 pr-12 w-fit h-fit sticky top-20 ' >
             <h2 className='font-bold text-zinc-900 font-Nunito mb-5' >Shop by Product</h2>
 
             <div className='flex flex-col' >

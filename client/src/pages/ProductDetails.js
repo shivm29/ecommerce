@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/Cart'
 import { toast } from 'react-toastify'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ProductDetails = () => {
 
@@ -19,6 +21,14 @@ const ProductDetails = () => {
             getProduct()
         }
     }, [params?.slug])
+
+    const goTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
 
     const getProduct = async () => {
         try {
@@ -65,7 +75,7 @@ const ProductDetails = () => {
                 <div className='h-2/3 grid grid-cols-2 w-2/3 max-[1400px]:w-5/6 max-[1000px]:w-full max-[1000px]:px-4 gap-8  max-[800px]:flex max-[800px]:flex-col '  >
 
                     {/* product image */}
-                    <div className='flex max-[800px]:justify-center' ><img src={`/api/v1/product/product-photo/${product?._id}`} alt="" className=' object-cover' /></div>
+                    <div className='flex max-[800px]:justify-center' ><LazyLoadImage effect='blur' src={`/api/v1/product/product-photo/${product?._id}`} alt="" className=' object-cover' /></div>
 
                     {/* product details */}
                     <div className='flex flex-col box-border  max-[800px]:p-0 py-10 justify-between' >
@@ -134,6 +144,7 @@ const ProductDetails = () => {
                                     <div key={product._id} className='flex flex-col min-w-full  duration-100 mb-3' >
                                         {/* product photo */}
                                         <Link
+                                            onClick={goTop}
                                             to={`/product/${product.slug}`}
                                         >
                                             <img src={`/api/v1/product/product-photo/${product._id}`} alt="" />

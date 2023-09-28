@@ -10,6 +10,9 @@ import '../styles/HomeMEnu.css'
 import '../styles/Homepage.css'
 import { Prices } from '../components/Prices'
 import PickSomething from '../components/PickSomething'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 
 const HomePage = () => {
 
@@ -153,8 +156,8 @@ const HomePage = () => {
 
           <div className='flex flex-col flex-1 ' >
 
-            <div className='flex flex-col h-36 w-full  justify-between' id='background' >
-              <h1 className='flex p-4 h-1/2 items-end text-5xl font-bold ml-10 max-[800px]:text-5xl max-[800px]:pb-10  ' >ShopCart 50% Sale!</h1>
+            <div className='flex flex-col h-10  w-full  justify-between' id='background' >
+              <h1 className='flex p-4 h-1/2 items-end text-5xl font-bold ml-10 max-[800px]:text-5xl max-[800px]:pb-10  ' >Vesh 50% Sale!</h1>
               <div className='flex w-full justify-end' >
                 <button className='p-3 text-sm font-bold max-[800px]:font-semibold mr-10 mb-10 bg-zinc-800 text-zinc-100 max-[800px]:text-xs' >Shop Now</button>
               </div>
@@ -217,7 +220,7 @@ const HomePage = () => {
               animate={{ opacity: 1, y: '0%' }}
               transition={{ duration: 1, ease: 'easeOut' }}
               exit={{ opacity: 0 }}
-              className='grid mt-3 box-border min-w-full h-fit grid-cols-4 gap-2 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2 max-[800px]:p-2 max-[800px]:gap-1 ' >
+              className='grid mt-3 box-border min-w-full h-fit grid-cols-5 gap-2 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2 max-[800px]:p-2 max-[800px]:gap-1 ' >
               {
                 products?.map((product) => {
                   return (
@@ -226,7 +229,10 @@ const HomePage = () => {
                       <Link
                         to={`/product/${product.slug}`}
                       >
-                        <img src={`/api/v1/product/product-photo/${product._id}`} alt="" />
+                        <LazyLoadImage
+                          effect='blur'
+                          src={`/api/v1/product/product-photo/${product._id}`}
+                        />
                       </Link>
                       {/* product details */}
                       <div className='flex p-2 box-border mt-2 flex-col text-zinc-950 ' >
@@ -247,7 +253,7 @@ const HomePage = () => {
         </div>
         <div className='flex min-w-full justify-center' >
           {
-            products && products.length < total && (
+            checked.length === 0 && radio.length === 0 && products && products.length < total && (
               <button className='border-2 border-zinc-600 p-2 px-6 font-bold my-10 text-zinc-600 hover:bg-zinc-900  hover:text-white transition ease-in-out duration-200  text-sm '
                 onClick={(e) => {
                   e.preventDefault();
