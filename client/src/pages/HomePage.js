@@ -12,6 +12,8 @@ import { Prices } from '../components/Prices'
 import PickSomething from '../components/PickSomething'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import ReactLoading from 'react-loading';
+
 
 
 const HomePage = () => {
@@ -25,6 +27,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(0)
   const [showFilters, setShowFilters] = useState(false)
   const [showPrices, setShowPrices] = useState(false)
+  const [applyingFilter, setApplyingFilter] = useState(false)
 
   // load more
 
@@ -86,6 +89,7 @@ const HomePage = () => {
   }
 
   const handleFilter = (value, id) => {
+    setApplyingFilter(true);
     let all = [...checked]
     if (value) {
       all.push(id)
@@ -94,6 +98,7 @@ const HomePage = () => {
     }
 
     setChecked(all)
+
   }
 
   // get filtered products : 
@@ -110,6 +115,8 @@ const HomePage = () => {
         });
         setProducts(data?.products);
       }
+
+      setApplyingFilter(false)
     } catch (error) {
       console.log(error);
     }
@@ -138,6 +145,14 @@ const HomePage = () => {
   //   if (!checked.length || !radio.length) getAllProducts();
   // }, [checked.length, radio.length]);
 
+  const goTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+
   useEffect(() => {
     if (checked.length || radio.length) filterProduct();
   }, [checked, radio]);
@@ -156,21 +171,21 @@ const HomePage = () => {
 
           <div className='flex flex-col flex-1 ' >
 
-            <div className='flex flex-col h-10  w-full  justify-between' id='background' >
-              <h1 className='flex p-4 h-1/2 items-end text-5xl font-bold ml-10 max-[800px]:text-5xl max-[800px]:pb-10  ' >Vesh 50% Sale!</h1>
+            <div className='flex flex-col h-10  w-full  justify-between max-[800px]:max-h-64' id='background' >
+              <h1 className='flex p-4 mt-2 h-1/2 items-end text-5xl font-bold ml-10 max-[800px]:text-5xl max-[800px]:pb-10  ' >Vesh 50% Sale!</h1>
               <div className='flex w-full justify-end' >
                 <button className='p-3 text-sm font-bold max-[800px]:font-semibold mr-10 mb-10 bg-zinc-800 text-zinc-100 max-[800px]:text-xs' >Shop Now</button>
               </div>
             </div>
 
-            <div className='min-[800px]:hidden w-full px-2 py-4 relative flex ' >
+            <div className='min-[800px]:hidden w-full px-2 pt-4 relative flex text-xs' >
 
-              <button className="flex items-center text-xs p-2 pb-0 font-medium tracking-widest text-zinc-950 " onClick={() => setShowFilters(!showFilters)}
+              <button className="flex items-center text-xxs p-2 pb-0 font-medium tracking-widest text-zinc-950 " onClick={() => setShowFilters(!showFilters)}
 
-              > CATEGORY<img src="/images/down-arrow.png" className='h-3 ml-2' alt="" /> </button>
-              <button className="flex items-center text-xs p-2 pb-0 font-medium tracking-widest text-zinc-950 " onClick={() => setShowPrices(!showPrices)}
+              > CATEGORY <img src="/images/down-arrow.png" className='h-2 ml-2' alt="" /> </button>
+              <button className="flex items-center text-xxs p-2 pb-0 font-medium tracking-widest text-zinc-950 " onClick={() => setShowPrices(!showPrices)}
 
-              > PRICE<img src="/images/down-arrow.png" className='h-3 ml-2' alt="" /> </button>
+              > PRICE<img src="/images/down-arrow.png" className='h-2 ml-2' alt="" /> </button>
 
               <div className={` ${showFilters ? 'block' : 'hidden'} bg-white  w-48  text-sm ml-2 font-medium py-2 top-10  absolute dropdown-content overflow-auto pb-6 filter-dropdown ${showFilters ? 'open' : ''}`} >
                 <h2 className='mb-3 text-xs bg-slate-100 pl-4 py-2.5' > By Category</h2>
@@ -206,47 +221,50 @@ const HomePage = () => {
 
               </div>
 
-
-
-
-              <button className="flex items-center text-xs p-2 pb-0 font-medium  tracking-widest text-zinc-950 "
-
-              > SORT<img src="/images/down-arrow.png" className='h-3 ml-2' alt="" /> </button>
-
             </div>
             <PickSomething />
-            <motion.div
-              initial={{ opacity: 0.5, y: '10%' }}
-              animate={{ opacity: 1, y: '0%' }}
-              transition={{ duration: 1, ease: 'easeOut' }}
-              exit={{ opacity: 0 }}
-              className='grid mt-3 box-border min-w-full h-fit grid-cols-5 gap-2 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2 max-[800px]:p-2 max-[800px]:gap-1 ' >
-              {
-                products?.map((product) => {
-                  return (
-                    <div key={product._id} className='text-zinc-800 flex flex-col min-w-full  duration-100 mb-3' >
-                      {/* product photo */}
-                      <Link
-                        to={`/product/${product.slug}`}
-                      >
-                        <LazyLoadImage
-                          effect='blur'
-                          src={`/api/v1/product/product-photo/${product._id}`}
-                        />
-                      </Link>
-                      {/* product details */}
-                      <div className='flex p-2 box-border mt-2 flex-col text-zinc-950 ' >
-                        <h2 className='text-sm max-[600px]:text-xs mb-1 truncate' >{product.name}</h2>
-                        <h2 className='text-sm mb-2 max-[600px]:text-xs ' >$ {product.price}</h2>
+            {applyingFilter ? (
+              <div className='flex flex-col w-full items-center mt-10' >
+                <ReactLoading type="bubbles" color="#242424"
+                  height={70} width={70}
+                />
 
-                        <h2 className=' text-xs flex justify-between items-center w-full ' >New Arrival
-                        </h2>
+                <p>Applying Filters ..</p>
+              </div>) : (
+              <motion.div
+                initial={{ opacity: 0.5, y: '10%' }}
+                animate={{ opacity: 1, y: '0%' }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+                exit={{ opacity: 0 }}
+                className='grid mt-3 box-border min-w-full h-fit grid-cols-5 gap-2 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2 max-[800px]:p-2 max-[800px]:gap-1 ' >
+                {
+                  products?.map((product) => {
+                    return (
+                      <div key={product._id} className='text-zinc-800 flex flex-col min-w-full  duration-100 mb-3' >
+                        {/* product photo */}
+                        <Link
+                          onClick={goTop}
+                          to={`/product/${product.slug}`}
+                        >
+                          <LazyLoadImage
+                            effect='blur'
+                            src={`/api/v1/product/product-photo/${product._id}`}
+                          />
+                        </Link>
+                        {/* product details */}
+                        <div className='flex p-2 box-border mt-2 flex-col text-zinc-950 ' >
+                          <h2 className='text-sm max-[600px]:text-xs mb-1 truncate' >{product.name}</h2>
+                          <h2 className='text-sm mb-2 max-[600px]:text-xs ' >$ {product.price}</h2>
+
+                          <h2 className=' text-xs flex justify-between items-center w-full ' >New Arrival
+                          </h2>
+                        </div>
                       </div>
-                    </div>
-                  )
-                })
-              }
-            </motion.div>
+                    )
+                  })
+                }
+              </motion.div>
+            )}
           </div>
 
 

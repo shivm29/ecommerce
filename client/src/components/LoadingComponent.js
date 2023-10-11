@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/loading.css'
 import { useNavigate, useLocation } from 'react-router-dom'
+import ReactLoading from 'react-loading';
+
 
 const LoadingComponent = ({ path = '/login' }) => {
 
@@ -23,9 +25,12 @@ const LoadingComponent = ({ path = '/login' }) => {
 
     return (
         <div className='min-h-screen flex  items-center justify-center min-w-full flex-col' >
-            <section className="paytm-loader mb-10"></section>
-            <div className='font-Nunito text-xl font-semibold mb-20 text-zinc-600 ' >Redirecting you to login page in {count} seconds</div>
-            <div className='font-Nunito font-semibold text-pink-500  ' >Login to visit dashboard</div>
+            <div className='flex flex-col w-full items-center mt-10' >
+                <ReactLoading type="bubbles" color="#242424"
+                    height={70} width={70}
+                /></div>
+            <div className='font-Nunito text-xl font-semibold mb-5 text-zinc-600 max-[800px]:text-sm ' >Redirecting you to login page in {count} seconds</div>
+            <div className='font-Nunito font-semibold max-[800px]:text-sm ' >Login to visit dashboard</div>
         </div>
     )
 }

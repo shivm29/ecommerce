@@ -14,6 +14,9 @@ module.exports = {
       }
       , backdropBlur: {
         xs: '2px',
+      },
+      fontSize: {
+        'xxs': '0.6rem',
       }
     },
   },

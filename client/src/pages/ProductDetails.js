@@ -59,10 +59,10 @@ const ProductDetails = () => {
     const handleAddToCart = (product) => {
 
         if (cart?.filter(item => item === product).length > 0) {
-            // toast.success("Already added to cart")
+            toast.success("Already added to cart")
         } else {
             setCart([...cart, product]);
-            // toast.success("Added to cart")
+            toast.success("Added to cart")
             localStorage.setItem('cart', JSON.stringify([...cart, product]))
         }
 

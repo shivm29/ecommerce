@@ -39,7 +39,7 @@ const Header = () => {
       <div className='flex justify-center items-center min-h-fit' >
 
 
-        <h3 className='text-xl font-extrabold	mx-2 max-[700px]:font-bold max-[700px]:text-sm max-[700px]:mx-1 '>
+        <h3 className='text-xl font-extrabold	mx-2 max-[700px]:font-medium  max-[700px]:text-md max-[700px]:mx-1 '>
           Vesh</h3>
 
 
@@ -48,8 +48,8 @@ const Header = () => {
 
 
       <div className='flex md:w-2/5 min-[1000px]:hidden ' >
-        <div className='flex w-full justify-between items-center bg-gray-100 rounded-full mr-5 px-2  py-2  md:py-3 ' >
-          <input type="text" className=' w-full bg-gray-100 focus:outline-none pl-3 placeholder:text-zinc-500 placeholder:font-medium rounded-full box-border text-xs ' placeholder='search here..' name="" id="" />
+        <div className='flex w-full justify-between items-center  border border-zinc-400 mr-5 px-2  py-2  md:py-3 ' >
+          <input type="text" className=' w-full focus:outline-none pl-3 placeholder:text-zinc-500 placeholder:font-normal  box-border text-xs ' placeholder='search here..' name="" id="" />
           <i className="fas fa-search scale-90 "></i>
         </div>
 
