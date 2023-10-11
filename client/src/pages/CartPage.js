@@ -68,7 +68,7 @@ const CartPage = () => {
         toast.success("Payment completed Successfully")
         setLoading(false)
     }
-  
+
 
     useEffect(() => {
         getToken()
@@ -78,7 +78,7 @@ const CartPage = () => {
 
     console.log("cart, ", cart)
     return (
-        <Layout>
+        <Layout title={"Cart | Vesh"} >
             <div className='flex min-w-full flex-col items-center box-border min-[800px]:pl-20' >
                 <h1 className='text-3xl  mt-5 font-medium w-full border-zinc-300 flex justify-center max-[800px]:font-semibold max-[800px]:text-lg' >Shopping Bag</h1>
                 <h3 className='mt-3 mb-5 text-sm font-medium flex justify-end' >You have {cart?.length} items in your cart</h3>

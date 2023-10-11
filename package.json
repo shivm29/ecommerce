@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-website",
+  "name": "vesh",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,7 +12,7 @@
     "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "keywords": [],
-  "author": "shivam",
+  "author": "shivampuri",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",

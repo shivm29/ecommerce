@@ -69,7 +69,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <Layout>
+        <Layout title={'Vesh'}>
 
             <div className='flex flex-col min-w-full items-center min-h-full ' >
                 <div className='h-2/3 grid grid-cols-2 w-2/3 max-[1400px]:w-5/6 max-[1000px]:w-full max-[1000px]:px-4 gap-8  max-[800px]:flex max-[800px]:flex-col '  >

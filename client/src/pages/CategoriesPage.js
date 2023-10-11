@@ -11,7 +11,7 @@ const CategoriesPage = () => {
 
 
     return (
-        <Layout>
+        <Layout title={"Categories | Vesh"} >
             <div className='flex min-w-full justify-center' >
 
 

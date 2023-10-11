@@ -34,7 +34,7 @@ const CategoryProduct = () => {
     }, [params?.slug])
 
     return (
-        <Layout>
+        <Layout title={"Search for products | Vesh"} >
             <h1 className='w-full text-2xl flex justify-center mt-2 font-medium' > {!loading ? `${category?.name} for you` : "Searching.."} </h1>
             <h2 className='w-full text-sm flex justify-center mt-2 mb-2  font-medium' > {!loading && `${products?.length} Results found`} </h2>
 

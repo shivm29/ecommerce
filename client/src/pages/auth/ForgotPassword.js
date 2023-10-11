@@ -33,7 +33,7 @@ const ForgotPassword = () => {
     }
 
     return (
-        <Layout>
+        <Layout title={"Forgot Password | Vesh"} >
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

@@ -47,7 +47,7 @@ const Login = () => {
 
 
     return (
-        <Layout>
+        <Layout title={"Login | Vesh"} >
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -74,7 +74,7 @@ const Login = () => {
                     className='flex min-h-screen flex-1 items-start  pt-32 justify-center box-border pb-10 max-[1200px]:pb-1 max-[1200px]:px-5 max-[1200px]:pt-20 max-[800px]:px-10' >
                     <div className='flex justify-center flex-col' >
                         <h1 className='text-6xl font-extrabold mb-5 max-[1200px]:text-3xl max-[1200px]:mb-4' >Welcome Back !</h1>
-                        <h2 className='font-semibold ml-1 mb-5 max-[1200px]:text-sm max-[1200px]:mb-5 ' >Welcome to ShopCart Login page. We are glad to see you back !</h2>
+                        <h2 className='font-semibold ml-1 mb-5 max-[1200px]:text-sm max-[1200px]:mb-5 ' >Welcome to the Login page. We are glad to see you back !</h2>
 
                         <form action="" onSubmit={handleSubmit} >
                             <div className='min-w-full '  >

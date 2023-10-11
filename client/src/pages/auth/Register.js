@@ -39,7 +39,7 @@ const Register = () => {
 
 
     return (
-        <Layout>
+        <Layout title={"Register | Vesh"} >
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -64,7 +64,7 @@ const Register = () => {
                     className='flex min-h-screen  flex-1  pt-15 justify-center items-start box-border  pt-28 max-[1200px]:pt-10 max-[1200px]:pb-1 max-[1200px]:px-5 max-[800px]:px-10 ' >
                     <div className='flex justify-center flex-col' >
                         <h1 className='text-6xl font-extrabold mb-5 max-[1200px]:text-3xl max-[1200px]:mb-3' >Create new account</h1>
-                        <h2 className='font-semibold ml-1 mb-10 max-[1200px]:text-sm max-[1200px]:mb-5' > Welcome to ShopCart Signup page</h2>
+                        <h2 className='font-semibold ml-1 mb-10 max-[1200px]:text-sm max-[1200px]:mb-5' > Welcome to the Signup page</h2>
 
                         <form action="" onSubmit={handleSubmit} >
                             <div>

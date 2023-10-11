@@ -9,7 +9,7 @@ const SearchPage = () => {
     console.log(values)
 
     return (
-        <Layout>
+        <Layout title={"Search Results | Vesh"} >
             <div className='p-4 min-w-full flex flex-col items-center' >
                 <h6 className='font-semibold mb-10' >
                     {

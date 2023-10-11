@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 const PageNotFound = () => {
     return (
-        <Layout title={'Page not found - ShopCart'} >
+        <Layout title={'Page not found - Vesh'} >
             <motion.div
                 initial={{ opacity: 0.5, y: '20%' }}
                 animate={{ opacity: 1, y: '0%' }}

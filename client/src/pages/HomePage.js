@@ -158,7 +158,7 @@ const HomePage = () => {
   }, [checked, radio]);
 
   return (
-    <Layout title={'Shop now - ShopCart | Home'} >
+    <Layout title={'Shop now - Vesh | Home'} >
       <motion.div
         initial={{ opacity: 0.5, y: '20%' }}
         animate={{ opacity: 1, y: '0%' }}
